@@ -30,16 +30,16 @@ wire         fs_to_ds_valid;
 wire         ds_to_es_valid;
 wire         es_to_ms_valid;
 wire         ms_to_ws_valid;
-wire [`FS_TO_DS_BUS_WD -1:0] fs_to_ds_bus;
-wire [`DS_TO_ES_BUS_WD -1:0] ds_to_es_bus;
-wire [`ES_TO_MS_BUS_WD -1:0] es_to_ms_bus;
-wire [`MS_TO_WS_BUS_WD -1:0] ms_to_ws_bus;
-wire [`WS_TO_RF_BUS_WD -1:0] ws_to_rf_bus;
-wire [`BR_BUS_WD       -1:0] br_bus;
-wire [21               -1:0] data_hazard_bus;
-wire [7                -1:0] es_to_ds_bus;
-wire [7                -1:0] ms_to_ds_bus;
-wire [7                -1:0] ws_to_ds_bus;
+wire [`FS_TO_DS_BUS_WD    -1:0] fs_to_ds_bus;
+wire [`DS_TO_ES_BUS_WD    -1:0] ds_to_es_bus;
+wire [`ES_TO_MS_BUS_WD    -1:0] es_to_ms_bus;
+wire [`MS_TO_WS_BUS_WD    -1:0] ms_to_ws_bus;
+wire [`WS_TO_RF_BUS_WD    -1:0] ws_to_rf_bus;
+wire [`BR_BUS_WD          -1:0] br_bus;
+wire [`DATA_HAZARD_BUS_WD -1:0] data_hazard_bus;
+wire [`ES_TO_DS_BUS_WD    -1:0] es_to_ds_bus;
+wire [`MS_TO_DS_BUS_WD    -1:0] ms_to_ds_bus;
+wire [`WS_TO_DS_BUS_WD    -1:0] ws_to_ds_bus;
 
 assign data_hazard_bus = {es_to_ds_bus ,
                           ms_to_ds_bus ,

@@ -13,7 +13,7 @@ module exe_stage(
     output                         es_to_ms_valid,
     output [`ES_TO_MS_BUS_WD -1:0] es_to_ms_bus  ,
     //to ds:forewarding data that may cause data hazard
-    output [7                -1:0] es_to_ds_bus,
+    output [`ES_TO_DS_BUS_WD -1:0] es_to_ds_bus,
     // data sram interface
     output        data_sram_en   ,
     output [ 3:0] data_sram_wen  ,
@@ -64,11 +64,13 @@ assign es_to_ms_bus = {es_res_from_mem,  //70:70
                        es_gr_we       ,  //69:69
                        es_dest        ,  //68:64
                        es_alu_result  ,  //63:32
-                       es_pc             //31:0
+                       es_pc             //31: 0
                       };
-assign es_to_ds_bus = {es_valid       ,  //6:6
-                       es_gr_we       ,  //5:5
-                       es_dest           //4:0
+assign es_to_ds_bus = {es_valid       ,  //39:39
+                       es_load_op     ,  //38:38
+                       es_gr_we       ,  //37:37
+                       es_dest        ,  //36:32
+                       es_alu_result     //31: 0
                       };
 assign es_ready_go    = 1'b1;
 assign es_allowin     = !es_valid || es_ready_go && ms_allowin;

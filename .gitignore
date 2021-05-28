@@ -1,1 +1,9 @@
 *.wdb 
+Xil/
+mycpu_prj1.cache/
+mycpu_prj1.hw/
+mycpu_prj1.runs/
+mycpu_prj1.sim/
+*.jou
+.txt
+*.log

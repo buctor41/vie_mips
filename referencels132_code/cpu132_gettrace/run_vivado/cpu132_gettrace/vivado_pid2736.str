@@ -1,0 +1,606 @@
+/*
+
+Xilinx Vivado v2019.2 (64-bit) [Major: 2019, Minor: 2]
+SW Build: 2708876 on Wed Nov  6 21:40:23 MST 2019
+IP Build: 2700528 on Thu Nov  7 00:09:20 MST 2019
+
+Process ID (PID): 2736
+License: Customer
+
+Current time: 	Fri May 28 20:09:34 CST 2021
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 1920x1080
+Screen resolution (DPI): 125
+Available screens: 2
+Available disk space: 63 GB
+Default font: family=Dialog,name=Dialog,style=plain,size=15
+
+Java version: 	9.0.4 64-bit
+Java home: 	E:/vivado_exe/Vivado/2019.2/tps/win64/jre9.0.4
+Java executable location: 	E:/vivado_exe/Vivado/2019.2/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	buctor
+User home directory: C:/Users/buctor
+User working directory: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace
+User country: 	CN
+User language: 	zh
+User locale: 	zh_CN
+
+RDI_BASEROOT: E:/vivado_exe/Vivado
+HDI_APPROOT: E:/vivado_exe/Vivado/2019.2
+RDI_DATADIR: E:/vivado_exe/Vivado/2019.2/data
+RDI_BINDIR: E:/vivado_exe/Vivado/2019.2/bin
+
+Vivado preferences file location: C:/Users/buctor/AppData/Roaming/Xilinx/Vivado/2019.2/vivado.xml
+Vivado preferences directory: C:/Users/buctor/AppData/Roaming/Xilinx/Vivado/2019.2/
+Vivado layouts directory: C:/Users/buctor/AppData/Roaming/Xilinx/Vivado/2019.2/layouts
+PlanAhead jar file location: 	E:/vivado_exe/Vivado/2019.2/lib/classes/planAhead.jar
+Vivado log file location: 	E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/vivado.log
+Vivado journal file location: 	E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/vivado.jou
+Engine tmp dir: 	E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/.Xil/Vivado-2736-DESKTOP-0A5EB6A
+
+Xilinx Environment Variables
+----------------------------
+XILINX: E:/vivado_exe/Vivado/2019.2/ids_lite/ISE
+XILINX_DSP: E:/vivado_exe/Vivado/2019.2/ids_lite/ISE
+XILINX_PLANAHEAD: E:/vivado_exe/Vivado/2019.2
+XILINX_SDK: E:/vivado_exe/Vitis/2019.2
+XILINX_VITIS: E:/vivado_exe/Vitis/2019.2
+XILINX_VIVADO: E:/vivado_exe/Vivado/2019.2
+XILINX_VIVADO_HLS: E:/vivado_exe/Vivado/2019.2
+
+
+GUI allocated memory:	128 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 596 MB
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// WARNING: HEventQueue.dispatchEvent() is taking  1517 ms.
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 81 MB (+82272kb) [00:00:23]
+// [Engine Memory]: 596 MB (+473102kb) [00:00:23]
+// bB (cr):  Open Project : addNotify
+// Opening Vivado Project: E:\vie_mips\referencels132_code\cpu132_gettrace\run_vivado\cpu132_gettrace\cpu132_gettrace.xpr. Version: Vivado v2019.2 
+// Tcl Message: open_project E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.xpr 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// WARNING: HTimer (HSTRUtils Dump STR Log Timer) is taking 760ms to process. Increasing delay to 4000 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 596 MB. GUI used memory: 51 MB. Current time: 5/28/21, 8:09:37 PM CST
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 797 MB (+179783kb) [00:00:51]
+// [GUI Memory]: 88 MB (+2953kb) [00:00:52]
+// [GUI Memory]: 109 MB (+17853kb) [00:00:53]
+// [Engine Memory]: 848 MB (+11399kb) [00:00:56]
+// WARNING: HEventQueue.dispatchEvent() is taking  7185 ms.
+// Tcl Message: open_project E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'D:/67413-CPU设计实战_实验资源/lab/lab3/CPU_CDE/cpu132_gettrace/run_vivado/cpu132_gettrace' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [filemgmt 56-1] IPUserFilesDir: Directory not found as 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.ip_user_files'; using path 'D:/67413-CPU设计实战_实验资源/lab/lab3/CPU_CDE/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.ip_user_files' instead. INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'E:/vivado_exe/Vivado/2019.2/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 848 MB. GUI used memory: 56 MB. Current time: 5/28/21, 8:10:07 PM CST
+// Tcl Message: open_project: Time (s): cpu = 00:00:24 ; elapsed = 00:00:32 . Memory (MB): peak = 876.332 ; gain = 246.695 
+// Project name: cpu132_gettrace; location: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace; part: xc7a200tfbg676-2
+dismissDialog("Open Project"); // bB (cr)
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // u (O, cr)
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, "Run Behavioral Simulation"); // ai (ao, cr)
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL
+// e (cr):  Run Simulation : addNotify
+// Tcl Message: generate_target Simulation [get_files E:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram.xci] 
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inst_ram'... 
+selectButton(RDIResource.ProgressDialog_CANCEL, "Cancel"); // a (e)
+// Tcl Message: INFO: [Common 17-365] Interrupt caught but 'generate_target' cannot be canceled. Please wait for command to finish. 
+// TclEventType: LOAD_FEATURE
+selectButton(RDIResource.ProgressDialog_BACKGROUND, "Background"); // a (e)
+// 'd' command handler elapsed time: 5 seconds
+// TclEventType: LOAD_FEATURE
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v)]", 2); // B (F, cr)
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v)]", 2); // B (F, cr)
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v)]", 2); // B (F, cr)
+// PAPropertyPanels.initPanels (inst_ram.xci) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false); // B (F, cr)
+// [Engine Memory]: 890 MB (+68kb) [00:01:26]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false, false, false, false, false, true); // B (F, cr) - Double Click
+// HMemoryUtils.trashcanNow. Engine heap size: 900 MB. GUI used memory: 57 MB. Current time: 5/28/21, 8:10:37 PM CST
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false, false, false, false, false, true); // B (F, cr) - Double Click
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-3499] Reset cancelled 'Simulation' target for IP 'inst_ram'. 
+// Tcl Message: generate_target: Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 920.418 ; gain = 17.566 
+// Tcl Message: INFO: [Common 17-681] Processing pending cancel. 
+// Tcl Message: export_ip_user_files -of_objects [get_files E:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram.xci] -no_script -sync -force -quiet 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// HMemoryUtils.trashcanNow. Engine heap size: 933 MB. GUI used memory: 57 MB. Current time: 5/28/21, 8:10:57 PM CST
+// TclEventType: LAUNCH_SIM
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// Tcl Message: launch_simulation 
+// Tcl Message: Command: launch_simulation  
+// Tcl Message: "xvlog --incr --relax -prj tb_top_vlog.prj" 
+// TclEventType: LAUNCH_SIM_LOG
+// Tcl Message: INFO: [VRFC 10-163] Analyzing VHDL file "E:/vivado_exe/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd" into library xpm 
+// Tcl Message: run_program: Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 946.398 ; gain = 0.000 
+// Tcl Message: INFO: [USF-XSim-69] 'compile' step finished in '10' seconds INFO: [USF-XSim-3] XSim::Elaborate design INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim' 
+// Tcl Message: "xelab -wto 0b1dbb0896ef4eeda37b1c5b59d1e116 --incr --debug typical --relax --mt 2 -L xpm -L xil_defaultlib -L blk_mem_gen_v8_4_4 -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_behav xil_defaultlib.tb_top xil_defaultlib.glbl -log elaborate.log" 
+// TclEventType: LAUNCH_SIM
+// Tcl Message: INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds INFO: [USF-XSim-99] Step results log file:'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim/elaborate.log' 
+// Tcl Message: ERROR: [USF-XSim-62] 'elaborate' step failed with error(s). Please check the Tcl console output or 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim/elaborate.log' file for more information. ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation. 
+// Tcl Message: launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:13 . Memory (MB): peak = 946.398 ; gain = 0.000 
+// Tcl Message: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors. 
+// CommandFailedException: ERROR: [Common 17-69] Command failed: ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  
+// HOptionPane Error: 'ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.  (Run Simulation)'
+// Elapsed time: 31 seconds
+dismissDialog("Run Simulation"); // e (cr)
+selectButton("OptionPane.button", "OK"); // JButton (A, G)
+// a (cr): Critical Messages: addNotify
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f (a)
+dismissDialog("Critical Messages"); // a (cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false); // B (F, cr)
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, soc_lite_top (soc_lite_top.v), inst_ram : inst_ram (inst_ram.xci)]", 4, false, false, false, false, false, true); // B (F, cr) - Double Click
+// Run Command: PAResourceCommand.PACommandNames_RECUSTOMIZE_CORE
+// O (cr):  Re-customize IP : addNotify
+// r (cr): Re-customize IP: addNotify
+// [Engine Memory]: 942 MB (+8106kb) [00:02:09]
+// WARNING: HEventQueue.dispatchEvent() is taking  2472 ms.
+dismissDialog("Re-customize IP"); // O (cr)
+// Elapsed time: 28 seconds
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Other Options", 2); // bh (E, r)
+selectButton(PAResourceEtoH.HACGCCoeFileWidget_BROWSE, "Browse"); // a (E, r)
+// Elapsed time: 13 seconds
+setFileChooser("E:/vie_mips/referencels132_code/soft/func_lab4/obj/inst_ram.coe");
+// WARNING: HEventQueue.dispatchEvent() is taking  5255 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 968 MB. GUI used memory: 63 MB. Current time: 5/28/21, 8:12:07 PM CST
+// Elapsed time: 11 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a (r)
+dismissDialog("Re-customize IP"); // r (cr)
+// Tcl Message: set_property -dict [list CONFIG.Coe_File {E:/vie_mips/referencels132_code/soft/func_lab4/obj/inst_ram.coe}] [get_ips inst_ram] 
+// Tcl Message: INFO: [IP_Flow 19-3484] Absolute path of file 'e:/vie_mips/referencels132_code/soft/func_lab4/obj/inst_ram.coe' provided. It will be converted relative to IP Instance files '../../../../soft/func_lab4/obj/inst_ram.coe' 
+// r (cr): Re-customize IP: addNotify
+// bB (r):  Re-customize IP : addNotify
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILESET_UPDATE_IP
+// TclEventType: FILE_SET_CHANGE
+// aI (cr): Generate Output Products: addNotify
+// Elapsed time: 10 seconds
+dismissDialog("Re-customize IP"); // bB (r)
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 35 seconds
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a (aI)
+// bB (cr):  Managing Output Products : addNotify
+// Tcl Message: generate_target all [get_files  E:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram.xci] 
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'inst_ram'... INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'inst_ram'... 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'inst_ram'... INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'inst_ram'... INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'inst_ram'... 
+// Tcl Message: generate_target: Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1002.336 ; gain = 3.996 
+// Tcl Message: catch { config_ip_cache -export [get_ips -all inst_ram] } 
+// Tcl Message: export_ip_user_files -of_objects [get_files E:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram.xci] -no_script -sync -force -quiet 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: launch_runs -jobs 4 inst_ram_synth_1 
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Fri May 28 20:13:17 2021] Launched inst_ram_synth_1... Run output will be captured here: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// [GUI Memory]: 122 MB (+7796kb) [00:04:08]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// Elapsed time: 23 seconds
+selectButton("OptionPane.button", "OK"); // JButton (A, G)
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Simulation, Run Simulation]", 10, false); // u (O, cr)
+selectMenuItem(PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, "Run Behavioral Simulation"); // ai (ao, cr)
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL
+// e (cr):  Run Simulation : addNotify
+// TclEventType: LAUNCH_SIM
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// Tcl Message: launch_simulation 
+// Tcl Message: Command: launch_simulation  
+// Tcl Message: "xvlog --incr --relax -prj tb_top_vlog.prj" 
+// TclEventType: LAUNCH_SIM_LOG
+// Tcl Message: INFO: [USF-XSim-69] 'compile' step finished in '3' seconds INFO: [USF-XSim-3] XSim::Elaborate design INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim' 
+// Tcl Message: "xelab -wto 0b1dbb0896ef4eeda37b1c5b59d1e116 --incr --debug typical --relax --mt 2 -L xpm -L xil_defaultlib -L blk_mem_gen_v8_4_4 -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_behav xil_defaultlib.tb_top xil_defaultlib.glbl -log elaborate.log" 
+// Tcl Message: Built simulation snapshot tb_top_behav  ****** Webtalk v2019.2 (64-bit)   **** SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019   **** IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019     ** Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.  source E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim/xsim.dir/tb_top_behav/webtalk/xsim_webtalk.tcl -notrace 
+// TclEventType: LAUNCH_SIM
+// TclEventType: LOAD_FEATURE
+// Tcl Message: INFO: [Common 17-186] 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim/xsim.dir/tb_top_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Fri May 28 20:13:50 2021. For additional details about this file, please refer to the WebTalk help file at E:/vivado_exe/Vivado/2019.2/doc/webtalk_introduction.html. webtalk_transmit: Time (s): cpu = 00:00:00 ; elapsed = 00:00:06 . Memory (MB): peak = 92.336 ; gain = 0.000 INFO: [Common 17-206] Exiting Webtalk at Fri May 28 20:13:50 2021... 
+// Tcl Message: run_program: Time (s): cpu = 00:00:01 ; elapsed = 00:00:21 . Memory (MB): peak = 1016.109 ; gain = 0.000 
+// Tcl Message: INFO: [USF-XSim-69] 'elaborate' step finished in '21' seconds INFO: [USF-XSim-4] XSim::Simulate design INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.sim/sim_1/behav/xsim' INFO: [USF-XSim-98] *** Running xsim 
+// Tcl Message:    with args "tb_top_behav -key {Behavioral:sim_1:Functional:tb_top} -tclbatch {tb_top.tcl} -log {simulate.log}" 
+// Tcl Message: INFO: [USF-XSim-8] Loading simulator feature 
+// Tcl Message: Vivado Simulator 2019.2 
+// TclEventType: SIMULATION_CREATE_SIMULATION_OBJECT
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// WARNING: HEventQueue.dispatchEvent() is taking  1411 ms.
+// Tcl Message: Time resolution is 1 ps 
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// [Engine Memory]: 995 MB (+5747kb) [00:04:43]
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// Elapsed time: 28 seconds
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// TclEventType: WAVEFORM_OPEN_WCFG
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// Waveform: addNotify
+// TclEventType: WAVEFORM_MODEL_EVENT
+// Tcl Message: source tb_top.tcl 
+// Tcl Message: # set curr_wave [current_wave_config] # if { [string length $curr_wave] == 0 } { #   if { [llength [get_objects]] > 0} { #     add_wave / #     set_property needs_save false [current_wave_config] #   } else { #      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console." #   } # } 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// HMemoryUtils.trashcanNow. Engine heap size: 995 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:13:55 PM CST
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_TITLE
+// Tcl Message: # log_wave -r / 
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// TclEventType: SIMULATION_CLEAR_CURRENT_LINE
+// Tcl Message: # run 1000ns 
+// Tcl Message:  Block Memory Generator module loading initial data... 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: SIMULATION_OBJECT_TREE_RESTORED
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: SIMULATION_CURRENT_SCOPE_CHANGED
+// TclEventType: SIMULATION_CURRENT_STACK_CHANGED
+// TclEventType: SIMULATION_UPDATE_STACK_FRAMES
+// TclEventType: SIMULATION_CURRENT_STACK_FRAME_CHANGED
+// TclEventType: SIMULATION_UPDATE_LOCALS
+// Tcl Message:  Block Memory Generator data initialization complete. Block Memory Generator module tb_top.soc_lite.inst_ram.inst.native_mem_module.blk_mem_gen_v8_4_4_inst is using a behavioral model for simulation which will not precisely model memory collision behavior. Block Memory Generator module tb_top.soc_lite.data_ram.inst.native_mem_module.blk_mem_gen_v8_4_4_inst is using a behavioral model for simulation which will not precisely model memory collision behavior. 
+// TclEventType: SIMULATION_UPDATE_LOCALS
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// Tcl Message: xsim: Time (s): cpu = 00:00:14 ; elapsed = 00:00:08 . Memory (MB): peak = 1078.273 ; gain = 62.164 
+// Tcl Message: INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_top_behav' loaded. INFO: [USF-XSim-97] XSim simulation ran for 1000ns 
+// Tcl Message: launch_simulation: Time (s): cpu = 00:00:16 ; elapsed = 00:00:33 . Memory (MB): peak = 1078.273 ; gain = 62.164 
+// 'd' command handler elapsed time: 33 seconds
+dismissDialog("Run Simulation"); // e (cr)
+// [Engine Memory]: 1,046 MB (+976kb) [00:04:49]
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+selectButton(PAResourceCommand.PACommandNames_SIMULATION_LIVE_RUN_ALL, "simulation_live_run_all"); // E (f, cr)
+// Run Command: PAResourceCommand.PACommandNames_SIMULATION_LIVE_RUN_ALL
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// TclEventType: SIMULATION_CLEAR_CURRENT_LINE
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message: run all 
+// Tcl Message: ============================================================== Test begin! ----[  14265 ns] Number 8'd01 Functional Test Point PASS!!!         [  22000 ns] Test is running, debug_wb_pc = 0xbfc6e960         [  32000 ns] Test is running, debug_wb_pc = 0xbfc6f900 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 75 MB. Current time: 5/28/21, 8:14:03 PM CST
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// Tcl Message:         [  42000 ns] Test is running, debug_wb_pc = 0xbfc708a0         [  52000 ns] Test is running, debug_wb_pc = 0xbfc71840 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [  62000 ns] Test is running, debug_wb_pc = 0xbfc727e0 ----[  68905 ns] Number 8'd02 Functional Test Point PASS!!!         [  72000 ns] Test is running, debug_wb_pc = 0xbfc2beb0         [  82000 ns] Test is running, debug_wb_pc = 0xbfc2ce50         [  92000 ns] Test is running, debug_wb_pc = 0xbfc2ddf0 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:05 PM CST
+// Tcl Message:         [ 102000 ns] Test is running, debug_wb_pc = 0xbfc2ed90 ----[ 108495 ns] Number 8'd03 Functional Test Point PASS!!!         [ 112000 ns] Test is running, debug_wb_pc = 0xbfc63924         [ 122000 ns] Test is running, debug_wb_pc = 0xbfc648c4         [ 132000 ns] Test is running, debug_wb_pc = 0xbfc65864 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 142000 ns] Test is running, debug_wb_pc = 0xbfc66804         [ 152000 ns] Test is running, debug_wb_pc = 0xbfc677a4         [ 162000 ns] Test is running, debug_wb_pc = 0xbfc68744 ----[ 163135 ns] Number 8'd04 Functional Test Point PASS!!! 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 172000 ns] Test is running, debug_wb_pc = 0xbfc51f24         [ 182000 ns] Test is running, debug_wb_pc = 0xbfc52ec4 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:09 PM CST
+// Tcl Message:         [ 192000 ns] Test is running, debug_wb_pc = 0xbfc53e64         [ 202000 ns] Test is running, debug_wb_pc = 0xbfc54e04         [ 212000 ns] Test is running, debug_wb_pc = 0xbfc55da4 ----[ 217775 ns] Number 8'd05 Functional Test Point PASS!!!         [ 222000 ns] Test is running, debug_wb_pc = 0xbfc061b4         [ 232000 ns] Test is running, debug_wb_pc = 0xbfc07154 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 242000 ns] Test is running, debug_wb_pc = 0xbfc080f4         [ 252000 ns] Test is running, debug_wb_pc = 0xbfc09094         [ 262000 ns] Test is running, debug_wb_pc = 0xbfc0a034         [ 272000 ns] Test is running, debug_wb_pc = 0xbfc0afd4 ----[ 272415 ns] Number 8'd06 Functional Test Point PASS!!! 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 282000 ns] Test is running, debug_wb_pc = 0xbfc74114         [ 292000 ns] Test is running, debug_wb_pc = 0xbfc750b4         [ 302000 ns] Test is running, debug_wb_pc = 0xbfc76054 
+// Tcl Message:         [ 312000 ns] Test is running, debug_wb_pc = 0xbfc76ff4         [ 322000 ns] Test is running, debug_wb_pc = 0xbfc77f94 ----[ 327055 ns] Number 8'd07 Functional Test Point PASS!!!         [ 332000 ns] Test is running, debug_wb_pc = 0xbfc00e04         [ 342000 ns] Test is running, debug_wb_pc = 0xbfc01da4 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:13 PM CST
+// Tcl Message:         [ 352000 ns] Test is running, debug_wb_pc = 0xbfc02d44         [ 362000 ns] Test is running, debug_wb_pc = 0xbfc03ce4         [ 372000 ns] Test is running, debug_wb_pc = 0xbfc04c84 ----[ 381695 ns] Number 8'd08 Functional Test Point PASS!!!         [ 382000 ns] Test is running, debug_wb_pc = 0xbfc006c8 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 392000 ns] Test is running, debug_wb_pc = 0xbfc57634         [ 402000 ns] Test is running, debug_wb_pc = 0xbfc585d4 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 412000 ns] Test is running, debug_wb_pc = 0xbfc59574         [ 422000 ns] Test is running, debug_wb_pc = 0xbfc5a514         [ 432000 ns] Test is running, debug_wb_pc = 0xbfc5b4b4 ----[ 436335 ns] Number 8'd09 Functional Test Point PASS!!!         [ 442000 ns] Test is running, debug_wb_pc = 0xbfc69154         [ 452000 ns] Test is running, debug_wb_pc = 0xbfc6a0f4 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:16 PM CST
+// Tcl Message:         [ 462000 ns] Test is running, debug_wb_pc = 0xbfc6b094         [ 472000 ns] Test is running, debug_wb_pc = 0xbfc6c034 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 482000 ns] Test is running, debug_wb_pc = 0xbfc6cfd4 ----[ 490975 ns] Number 8'd10 Functional Test Point PASS!!!         [ 492000 ns] Test is running, debug_wb_pc = 0xbfc0b184         [ 502000 ns] Test is running, debug_wb_pc = 0xbfc0c124 
+// Tcl Message:         [ 512000 ns] Test is running, debug_wb_pc = 0xbfc0d0c4         [ 522000 ns] Test is running, debug_wb_pc = 0xbfc0e064 ----[ 530565 ns] Number 8'd11 Functional Test Point PASS!!!         [ 532000 ns] Test is running, debug_wb_pc = 0xbfc5f688 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 542000 ns] Test is running, debug_wb_pc = 0xbfc60628         [ 552000 ns] Test is running, debug_wb_pc = 0xbfc615c8 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:20 PM CST
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 562000 ns] Test is running, debug_wb_pc = 0xbfc62568 ----[ 570155 ns] Number 8'd12 Functional Test Point PASS!!!         [ 572000 ns] Test is running, debug_wb_pc = 0xbfc41d5c         [ 582000 ns] Test is running, debug_wb_pc = 0xbfc42cfc         [ 592000 ns] Test is running, debug_wb_pc = 0xbfc43c9c         [ 602000 ns] Test is running, debug_wb_pc = 0xbfc44c3c ----[ 609745 ns] Number 8'd13 Functional Test Point PASS!!!         [ 612000 ns] Test is running, debug_wb_pc = 0xbfc5da40         [ 622000 ns] Test is running, debug_wb_pc = 0xbfc5e7d0 ----[ 629405 ns] Number 8'd14 Functional Test Point PASS!!!         [ 632000 ns] Test is running, debug_wb_pc = 0xbfc5be88 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 642000 ns] Test is running, debug_wb_pc = 0xbfc5cc18 ----[ 650565 ns] Number 8'd15 Functional Test Point PASS!!!         [ 652000 ns] Test is running, debug_wb_pc = 0xbfc1abbc 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:23 PM CST
+// Tcl Message:         [ 662000 ns] Test is running, debug_wb_pc = 0xbfc1c040         [ 672000 ns] Test is running, debug_wb_pc = 0xbfc1d4e8         [ 682000 ns] Test is running, debug_wb_pc = 0xbfc1e97c         [ 692000 ns] Test is running, debug_wb_pc = 0xbfc1fe00         [ 702000 ns] Test is running, debug_wb_pc = 0xbfc20fc4         [ 712000 ns] Test is running, debug_wb_pc = 0xbfc2203c 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 722000 ns] Test is running, debug_wb_pc = 0xbfc230b4         [ 732000 ns] Test is running, debug_wb_pc = 0xbfc24150         [ 742000 ns] Test is running, debug_wb_pc = 0xbfc2516c 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 752000 ns] Test is running, debug_wb_pc = 0xbfc262fc         [ 762000 ns] Test is running, debug_wb_pc = 0xbfc277a4         [ 772000 ns] Test is running, debug_wb_pc = 0xbfc28c28 
+// Tcl Message:         [ 782000 ns] Test is running, debug_wb_pc = 0xbfc2a0d0         [ 792000 ns] Test is running, debug_wb_pc = 0xbfc2b564 ----[ 794575 ns] Number 8'd16 Functional Test Point PASS!!!         [ 802000 ns] Test is running, debug_wb_pc = 0xbfc30360 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:27 PM CST
+// Tcl Message:         [ 812000 ns] Test is running, debug_wb_pc = 0xbfc313d8         [ 822000 ns] Test is running, debug_wb_pc = 0xbfc32450 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 832000 ns] Test is running, debug_wb_pc = 0xbfc334ec         [ 842000 ns] Test is running, debug_wb_pc = 0xbfc34508         [ 852000 ns] Test is running, debug_wb_pc = 0xbfc35698 
+// Tcl Message:         [ 862000 ns] Test is running, debug_wb_pc = 0xbfc36b40         [ 872000 ns] Test is running, debug_wb_pc = 0xbfc37fc4         [ 882000 ns] Test is running, debug_wb_pc = 0xbfc3946c 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 892000 ns] Test is running, debug_wb_pc = 0xbfc3a900         [ 902000 ns] Test is running, debug_wb_pc = 0xbfc3ba04         [ 912000 ns] Test is running, debug_wb_pc = 0xbfc3cac0 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:31 PM CST
+// Tcl Message:         [ 922000 ns] Test is running, debug_wb_pc = 0xbfc3db38         [ 932000 ns] Test is running, debug_wb_pc = 0xbfc3ebb0         [ 942000 ns] Test is running, debug_wb_pc = 0xbfc3fc4c ----[ 949475 ns] Number 8'd17 Functional Test Point PASS!!!         [ 952000 ns] Test is running, debug_wb_pc = 0xbfc0f15c         [ 962000 ns] Test is running, debug_wb_pc = 0xbfc101f0 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 972000 ns] Test is running, debug_wb_pc = 0xbfc11240         [ 982000 ns] Test is running, debug_wb_pc = 0xbfc122d4 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [ 992000 ns] Test is running, debug_wb_pc = 0xbfc13324         [1002000 ns] Test is running, debug_wb_pc = 0xbfc1436c         [1012000 ns] Test is running, debug_wb_pc = 0xbfc15408 
+// Tcl Message:         [1022000 ns] Test is running, debug_wb_pc = 0xbfc16450         [1032000 ns] Test is running, debug_wb_pc = 0xbfc174ec 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:34 PM CST
+// Tcl Message:         [1042000 ns] Test is running, debug_wb_pc = 0xbfc18564         [1052000 ns] Test is running, debug_wb_pc = 0xbfc195d0         [1062000 ns] Test is running, debug_wb_pc = 0xbfc1a648 ----[1063935 ns] Number 8'd18 Functional Test Point PASS!!! 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [1072000 ns] Test is running, debug_wb_pc = 0xbfc464d4         [1082000 ns] Test is running, debug_wb_pc = 0xbfc47504         [1092000 ns] Test is running, debug_wb_pc = 0xbfc48530 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// Tcl Message:         [1102000 ns] Test is running, debug_wb_pc = 0xbfc49550         [1112000 ns] Test is running, debug_wb_pc = 0xbfc4a59c         [1122000 ns] Test is running, debug_wb_pc = 0xbfc4b5cc 
+// Tcl Message:         [1132000 ns] Test is running, debug_wb_pc = 0xbfc4c5fc         [1142000 ns] Test is running, debug_wb_pc = 0xbfc4d62c         [1152000 ns] Test is running, debug_wb_pc = 0xbfc4e658 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// HMemoryUtils.trashcanNow. Engine heap size: 1,051 MB. GUI used memory: 69 MB. Current time: 5/28/21, 8:14:38 PM CST
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_UPDATE_COMMANDS
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: SIMULATION_OBJECT_TREE_RESTORED
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: SIMULATION_UPDATE_LATEST_TIME
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_DELAYED_MODEL_EVENT
+// TclEventType: SIMULATION_CURRENT_SCOPE_CHANGED
+// TclEventType: SIMULATION_CURRENT_STACK_CHANGED
+// TclEventType: SIMULATION_UPDATE_STACK_FRAMES
+// TclEventType: SIMULATION_CURRENT_STACK_FRAME_CHANGED
+// TclEventType: SIMULATION_UPDATE_LOCALS
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_STOPPED
+// Tcl Message:         [1162000 ns] Test is running, debug_wb_pc = 0xbfc4f678         [1172000 ns] Test is running, debug_wb_pc = 0xbfc506c4 ----[1174395 ns] Number 8'd19 Functional Test Point PASS!!! ----[1176525 ns] Number 8'd20 Functional Test Point PASS!!! ----[1178655 ns] Number 8'd21 Functional Test Point PASS!!! ----[1180175 ns] Number 8'd22 Functional Test Point PASS!!!         [1182000 ns] Test is running, debug_wb_pc = 0xbfc50fec ----[1183195 ns] Number 8'd23 Functional Test Point PASS!!! ============================================================== gettrace end! ----Succeed in generating trace file! $finish called at time : 1183835 ns : File "E:/vie_mips/referencels132_code/cpu132_gettrace/testbench/tb_top.v" Line 221 
+// TclEventType: SIMULATION_STOPPED
+// TclEventType: SIMULATION_UPDATE_SIMULATION_STATE
+// Tcl Message: run: Time (s): cpu = 00:00:45 ; elapsed = 00:00:38 . Memory (MB): peak = 1078.273 ; gain = 0.000 
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// TclEventType: WAVEFORM_MODEL_EVENT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: SIMULATION_UPDATE_SCOPE_TREE
+// TclEventType: SIMULATION_UPDATE_STACKS
+// TclEventType: SIMULATION_UPDATE_OBJECT_TREE
+// TclEventType: SIMULATION_UPDATE_PROTOCOL_INSTANCE_TREE
+// TclEventType: WAVEFORM_UPDATE_WAVEFORM
+// HMemoryUtils.trashcanNow. Engine heap size: 1,066 MB. GUI used memory: 78 MB. Current time: 5/28/21, 8:20:47 PM CST
+// [GUI Memory]: 129 MB (+1296kb) [00:14:47]

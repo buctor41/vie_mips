@@ -11,7 +11,7 @@ module wb_stage(
     //to rf: for write back
     output [`WS_TO_RF_BUS_WD -1:0]  ws_to_rf_bus  ,
     //to ds:forewarding data that may cause data hazard
-    output [7                -1:0]  ws_to_ds_bus  ,
+    output [`WS_TO_DS_BUS_WD -1:0]  ws_to_ds_bus  ,
     //trace debug interface
     output [31:0] debug_wb_pc     ,
     output [ 3:0] debug_wb_rf_wen ,
@@ -36,13 +36,14 @@ assign {ws_gr_we       ,  //69:69
 wire        rf_we;
 wire [4 :0] rf_waddr;
 wire [31:0] rf_wdata;
-assign ws_to_ds_bus = {ws_valid,   //6:6
-                       rf_we   ,   //5:5
-                       rf_waddr    //4:0
+assign ws_to_ds_bus = {ws_valid,   //38:38
+                       rf_we   ,   //37:37
+                       rf_waddr,   //36:32
+                       rf_wdata    //31: 0
                       };
 assign ws_to_rf_bus = {rf_we   ,  //37:37
                        rf_waddr,  //36:32
-                       rf_wdata   //31:0
+                       rf_wdata   //31: 0
                       };
 
 assign ws_ready_go = 1'b1;

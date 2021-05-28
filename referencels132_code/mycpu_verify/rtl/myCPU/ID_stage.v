@@ -1,23 +1,23 @@
 `include "mycpu.h"
 
 module id_stage(
-    input                          clk           ,
-    input                          reset         ,
+    input                             clk           ,
+    input                             reset         ,
     //allowin
-    input                          es_allowin    ,
-    output                         ds_allowin    ,
+    input                             es_allowin    ,
+    output                            ds_allowin    ,
     //from fs
-    input                          fs_to_ds_valid,
-    input  [`FS_TO_DS_BUS_WD -1:0] fs_to_ds_bus  ,
+    input                             fs_to_ds_valid,
+    input  [`FS_TO_DS_BUS_WD    -1:0] fs_to_ds_bus  ,
     //to es
-    output                         ds_to_es_valid,
-    output [`DS_TO_ES_BUS_WD -1:0] ds_to_es_bus  ,
+    output                            ds_to_es_valid,
+    output [`DS_TO_ES_BUS_WD    -1:0] ds_to_es_bus  ,
     //to fs
-    output [`BR_BUS_WD       -1:0] br_bus        ,
+    output [`BR_BUS_WD          -1:0] br_bus        ,
     //to rf: for write back
-    input  [`WS_TO_RF_BUS_WD -1:0] ws_to_rf_bus  ,
+    input  [`WS_TO_RF_BUS_WD    -1:0] ws_to_rf_bus  ,
     //from es,ms,ws:for data hazard
-    input  [21               -1:0] data_hazard_bus
+    input  [`DATA_HAZARD_BUS_WD -1:0] data_hazard_bus
 );
 
 reg         ds_valid;
@@ -106,32 +106,43 @@ wire        vie_inst_require_rs;
 wire        vie_inst_require_rt;
 wire        vie_rs_hazard_likely;
 wire        vie_rt_hazard_likely;  
-wire        hazard_occur;
+// wire        hazard_occur;
 wire        es_hazard_occur;
 wire        ms_hazard_occur;
 wire        ws_hazard_occur;
 
 wire        es_valid;
+wire        es_load_op;
 wire        es_rf_we;
 wire [ 4:0] es_rf_waddr;
+wire [31:0] es_rf_wdata;
 
 wire        ms_valid;
 wire        ms_rf_we;
 wire [ 4:0] ms_rf_waddr;
+wire [31:0] ms_rf_wdata;
 
 wire        ws_valid;
 wire        ws_rf_we;
 wire [ 4:0] ws_rf_waddr;
+wire [31:0] ws_rf_wdata;
+//when load_hazard occur,cpu need to stall one period
+wire        hazard_occur_stall;
+
 
 assign {es_valid   ,
+        es_load_op ,
         es_rf_we   ,
         es_rf_waddr,
+        es_rf_wdata,
         ms_valid   ,
         ms_rf_we   ,
-        ms_rf_waddr ,
+        ms_rf_waddr,
+        ms_rf_wdata,
         ws_valid   ,
         ws_rf_we   ,
-        ws_rf_waddr
+        ws_rf_waddr,
+        ws_rf_wdata 
        } = data_hazard_bus;
 
 
@@ -152,7 +163,7 @@ assign ds_to_es_bus = {alu_op      ,  //135:124
                        ds_pc          //31 :0
                       };
 
-assign ds_ready_go    = !hazard_occur;
+assign ds_ready_go    = !hazard_occur_stall;
 assign ds_allowin     = !ds_valid || ds_ready_go && es_allowin;
 assign ds_to_es_valid = ds_valid && ds_ready_go;
 always @(posedge clk) begin
@@ -242,6 +253,7 @@ assign vie_inst_require_rt  = inst_addu | inst_subu  | inst_slt  | inst_sltu | i
 assign vie_rs_hazard_likely = vie_inst_require_rs && (rs != 5'h00);
 assign vie_rt_hazard_likely = vie_inst_require_rt && (rt != 5'h00);
 //attain signals indicating whether es|ms|ws hazard has occured
+assign load_hazard_occur    = es_hazard_occur && es_load_op;
 assign es_hazard_occur      = es_valid && es_rf_we && 
                               ((vie_rs_hazard_likely && es_rf_waddr == rs) ||
                               (vie_rt_hazard_likely  && es_rf_waddr == rt));
@@ -252,9 +264,13 @@ assign ms_hazard_occur      = ms_valid && ms_rf_we &&
 assign ws_hazard_occur      = ws_valid && ws_rf_we && 
                               ((vie_rs_hazard_likely && ws_rf_waddr == rs) ||
                               (vie_rt_hazard_likely  && ws_rf_waddr == rt));
-//A signal indicating whether a hazard has occured
-assign hazard_occur         = es_hazard_occur || ms_hazard_occur ||
-                              ws_hazard_occur ;
+//id occur load hazard,need to stall one period                              
+assign hazard_occur_stall         = load_hazard_occur;
+
+
+// //A signal indicating whether a hazard has occured
+// assign hazard_occur         = es_hazard_occur || ms_hazard_occur ||
+//                               ws_hazard_occur ;
 
 assign rf_raddr1 = rs;
 assign rf_raddr2 = rt;
@@ -269,8 +285,17 @@ regfile u_regfile(
     .wdata  (rf_wdata )
     );
 
-assign rs_value = rf_rdata1;
-assign rt_value = rf_rdata2;
+assign rs_value = (es_hazard_occur && es_rf_waddr == rs) ? es_rf_wdata :
+                  (ms_hazard_occur && ms_rf_waddr == rs) ? ms_rf_wdata :
+                  (ws_hazard_occur && ws_rf_waddr == rs) ? ws_rf_wdata :
+                  rf_rdata1;
+assign rt_value = (es_hazard_occur && es_rf_waddr == rt) ? es_rf_wdata :
+                  (ms_hazard_occur && ms_rf_waddr == rt) ? ms_rf_wdata :
+                  (ws_hazard_occur && ws_rf_waddr == rt) ? ws_rf_wdata :
+                  rf_rdata2;
+
+// assign rs_value = rf_rdata1;
+// assign rt_value = rf_rdata2;
 
 assign rs_eq_rt = (rs_value == rt_value);
 assign br_taken = (   inst_beq  &&  rs_eq_rt
