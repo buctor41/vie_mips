@@ -15,7 +15,9 @@ module id_stage(
     //to fs
     output [`BR_BUS_WD       -1:0] br_bus        ,
     //to rf: for write back
-    input  [`WS_TO_RF_BUS_WD -1:0] ws_to_rf_bus
+    input  [`WS_TO_RF_BUS_WD -1:0] ws_to_rf_bus  ,
+    //from es,ms,ws:for data hazard
+    input  [21               -1:0] data_hazard_bus
 );
 
 reg         ds_valid;
@@ -99,6 +101,40 @@ wire [31:0] rf_rdata2;
 
 wire        rs_eq_rt;
 
+//determine whether occur data hazard
+wire        vie_inst_require_rs;
+wire        vie_inst_require_rt;
+wire        vie_rs_hazard_likely;
+wire        vie_rt_hazard_likely;  
+wire        hazard_occur;
+wire        es_hazard_occur;
+wire        ms_hazard_occur;
+wire        ws_hazard_occur;
+
+wire        es_valid;
+wire        es_rf_we;
+wire [ 4:0] es_rf_waddr;
+
+wire        ms_valid;
+wire        ms_rf_we;
+wire [ 4:0] ms_rf_waddr;
+
+wire        ws_valid;
+wire        ws_rf_we;
+wire [ 4:0] ws_rf_waddr;
+
+assign {es_valid   ,
+        es_rf_we   ,
+        es_rf_waddr,
+        ms_valid   ,
+        ms_rf_we   ,
+        ms_rf_waddr ,
+        ws_valid   ,
+        ws_rf_we   ,
+        ws_rf_waddr
+       } = data_hazard_bus;
+
+
 assign br_bus       = {br_taken,br_target};
 
 assign ds_to_es_bus = {alu_op      ,  //135:124
@@ -116,7 +152,7 @@ assign ds_to_es_bus = {alu_op      ,  //135:124
                        ds_pc          //31 :0
                       };
 
-assign ds_ready_go    = 1'b1;
+assign ds_ready_go    = !hazard_occur;
 assign ds_allowin     = !ds_valid || ds_ready_go && es_allowin;
 assign ds_to_es_valid = ds_valid && ds_ready_go;
 always @(posedge clk) begin
@@ -193,6 +229,32 @@ assign mem_we       = inst_sw;
 assign dest         = dst_is_r31 ? 5'd31 :
                       dst_is_rt  ? rt    : 
                                    rd;
+//determine if this inst requires rs as src
+assign vie_inst_require_rs  = inst_addu | inst_addiu | inst_subu | inst_slt  | inst_sltu |
+                              inst_and  | inst_or    | inst_xor  | inst_nor  | inst_lw   |
+                              inst_sw   | inst_beq   | inst_bne  | inst_jr ;
+//determine if this inst requires rt as src
+assign vie_inst_require_rt  = inst_addu | inst_subu  | inst_slt  | inst_sltu | inst_and  |
+                              inst_or   | inst_xor   | inst_nor  | inst_sll  | inst_srl  |
+                              inst_sra  | inst_beq   | inst_bne  | inst_sw;
+//when this inst require rs|rt as their src register and rs|rt not equal to R0,
+//this inst is likely to occur data hazard
+assign vie_rs_hazard_likely = vie_inst_require_rs && (rs != 5'h00);
+assign vie_rt_hazard_likely = vie_inst_require_rt && (rt != 5'h00);
+//attain signals indicating whether es|ms|ws hazard has occured
+assign es_hazard_occur      = es_valid && es_rf_we && 
+                              ((vie_rs_hazard_likely && es_rf_waddr == rs) ||
+                              (vie_rt_hazard_likely  && es_rf_waddr == rt));
+
+assign ms_hazard_occur      = ms_valid && ms_rf_we && 
+                              ((vie_rs_hazard_likely && ms_rf_waddr == rs) ||
+                              (vie_rt_hazard_likely  && ms_rf_waddr == rt));
+assign ws_hazard_occur      = ws_valid && ws_rf_we && 
+                              ((vie_rs_hazard_likely && ws_rf_waddr == rs) ||
+                              (vie_rt_hazard_likely  && ws_rf_waddr == rt));
+//A signal indicating whether a hazard has occured
+assign hazard_occur         = es_hazard_occur || ms_hazard_occur ||
+                              ws_hazard_occur ;
 
 assign rf_raddr1 = rs;
 assign rf_raddr2 = rt;
@@ -219,5 +281,6 @@ assign br_taken = (   inst_beq  &&  rs_eq_rt
 assign br_target = (inst_beq || inst_bne) ? (fs_pc + {{14{imm[15]}}, imm[15:0], 2'b0}) :
                    (inst_jr)              ? rs_value :
                   /*inst_jal*/              {fs_pc[31:28], jidx[25:0], 2'b0};
+
 
 endmodule
