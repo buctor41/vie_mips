@@ -30,7 +30,7 @@ wire         ws_allowin;
 
 wire [`Vbrbus       -1:0] brbus;
 wire [`Vfsbus       -1:0] fsbus;
-wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�??
+wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�??
 wire [`Vtoifcbus    -1:0] inst_ifc;     //
 wire [`Vfromifcbus  -1:0] ifc_data;
 wire [`Vtoifcbus    -1:0] data_ifc;
@@ -38,7 +38,9 @@ wire [`Vissuebus    -1:0] issuebus;
 wire [`Vwsbus       -1:0] wsbus   ;
 wire [`Vrsbus       -1:0] rsbus   ;
 wire [`Vmsbus       -1:0] msbus   ;
-wire [`Vdebugbus    -1:0] debugbus ;
+wire [`Vdebugbus    -1:0] debugbus;
+wire [`Vrstatus     -1:0] rstatus ;
+wire [`Vmstatus     -1:0] mstatus ;
 
 assign        ifc_inst = inst_sram_rdata;
 assign    inst_sram_en = inst_ifc[68:68];
@@ -66,17 +68,18 @@ vie_if_stage  u0_if_stage(
 
 vie_id_stage  u1_id_stage(
     .clock(clk)    , .reset(reset)        , .es_allowin(es_allowin), .fsbus_i(fsbus),
-    .brbus_o(brbus), .issuebus_o(issuebus), .ds_allowin(ds_allowin), .wsbus_i(wsbus)
+    .brbus_o(brbus), .issuebus_o(issuebus), .ds_allowin(ds_allowin), .wsbus_i(wsbus),
+    .rstatus_i(rstatus), .mstatus_i(mstatus)
 );
 
 vie_exe_stage u2_ex_stage(
     .clock(clk)    , .reset(reset)        , .es_allowin(es_allowin), .issuebus_i(issuebus),
-    .rsbus_o(rsbus), .data_ifc_o(data_ifc), .ms_allowin(ms_allowin)
+    .rsbus_o(rsbus), .data_ifc_o(data_ifc), .ms_allowin(ms_allowin), .rstatus_o(rstatus)
 );
 
 vie_mem_stage u3_mem_stage(
     .clock(clk)    , .reset(reset)        , .ws_allowin(ws_allowin), .rsbus_i(rsbus),
-    .msbus_o(msbus), .ifc_data_i(ifc_data), .ms_allowin(ms_allowin)
+    .msbus_o(msbus), .ifc_data_i(ifc_data), .ms_allowin(ms_allowin), .mstatus_o(mstatus)
 );
 
 vie_wb_stage  u4_wb_stage(

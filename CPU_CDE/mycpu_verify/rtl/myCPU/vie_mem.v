@@ -7,6 +7,7 @@ module vie_mem_stage(
     ifc_data_i,
     ws_allowin,
     msbus_o,
+    mstatus_o,
     ms_allowin
 );
 input                        clock;
@@ -17,6 +18,7 @@ input  [`Vfromifcbus   -1:0] ifc_data_i;
 input                        ws_allowin;
 output [`Vmsbus        -1:0] msbus_o;
 output                       ms_allowin; 
+output [`Vmstatus      -1:0] mstatus_o;
 
 
 
@@ -81,4 +83,8 @@ assign final_valid  = ms_to_ws_valid;
 assign final_dest   = ms_dest       ;
 assign final_pc     = ms_pc         ;
 assign final_res    = ms_res_from_mem ? mem_data : ms_fixres;
+
+assign mstatus_o[39:39] = ms_valid_r;
+assign mstatus_o[38:32] = final_dest;
+assign mstatus_o[31: 0] = final_res;
 endmodule

@@ -8,7 +8,8 @@ module vie_exe_stage(
     ms_allowin,
     rsbus_o,
     es_allowin,
-    data_ifc_o
+    data_ifc_o,
+    rstatus_o
 );
 input                        clock;
 input                        reset;
@@ -18,6 +19,7 @@ input                          ms_allowin;
 output [`Vrsbus          -1:0] rsbus_o   ;
 output                         es_allowin;
 output [`Vtoifcbus       -1:0] data_ifc_o;
+output [`Vrstatus        -1:0] rstatus_o ;
 
 wire        issue_valid = issuebus_i[146:146];
 wire [31:0]    issue_pc = issuebus_i[145:114];
@@ -277,4 +279,10 @@ assign rs_is_load = load_op;
 assign rs_dest    = es_dest;
 assign rs_fixres  = fix_res;
 assign rs_pc      = es_pc;
+
+//status
+assign rstatus_o[40:40] = es_valid_r;
+assign rstatus_o[39:39] = load_op;
+assign rstatus_o[38:32] = es_dest;
+assign rstatus_o[31: 0] = fix_res;
 endmodule

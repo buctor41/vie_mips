@@ -8,6 +8,8 @@ module vie_id_stage(
     fsbus_i   ,
     wsbus_i   ,
     ds_allowin,
+    rstatus_i ,
+    mstatus_i ,
     brbus_o   ,
     issuebus_o   
 );
@@ -20,6 +22,8 @@ input                   reset;
 input                      es_allowin;
 input  [`Vfsbus      -1:0] fsbus_i   ;
 input  [`Vwsbus      -1:0] wsbus_i   ;
+input  [`Vrstatus    -1:0] rstatus_i ;
+input  [`Vmstatus    -1:0] mstatus_i ;
 output [`Vbrbus      -1:0] brbus_o   ;
 output                     ds_allowin;
 output [`Vissuebus   -1:0] issuebus_o;
@@ -31,6 +35,21 @@ wire [31:0] fs_inst = fsbus_i[31:0] ;
 wire        rf_we    = wsbus_i[37:37];
 wire [ 4:0] rf_waddr = wsbus_i[36:32]; 
 wire [31:0] rf_wdata = wsbus_i[31:0] ;
+
+wire        es_valid = rstatus_i[40:40];
+wire        es_load  = rstatus_i[39:39];
+wire        es_wen   = !rstatus_i[38:38];
+wire [4:0]  es_waddr = rstatus_i[36:32];
+wire [31:0]es_wdata = rstatus_i[31: 0];
+
+wire        ms_valid = mstatus_i[39:39];
+wire        ms_wen   = !mstatus_i[38:38];
+wire [4:0]  ms_waddr = mstatus_i[36:32];
+wire [31:0] ms_wdata = mstatus_i[31: 0];
+
+
+
+
 
 wire        br_taken ;
 wire [31:0] br_target;
@@ -243,8 +262,19 @@ wire [31:0] rf_rvalue1;
 wire        rf_wvalid0;
 wire [ 4:0] rf_waddr0 ;
 wire [31:0] rf_wvalue0;
-wire        rf_fwd0;        //wb写回时可能发生数据相�?
-wire        rf_fwd1;        //wb写回时可能发生数据相�?
+wire        rf_fwd0;        //wb写回时可能发生数据相�??
+wire        rf_fwd1;        //wb写回时可能发生数据相�??
+
+wire        ld_fwd0;
+wire        ld_fwd1;
+
+wire        es_fwd0;
+wire        es_fwd1;
+
+wire        ms_fwd0;
+wire        ms_fwd1;
+
+wire        v_load_hazard;
 
 
 assign rf_rvalid0 = vid_v1_rs | vid_v1_rt;
@@ -259,8 +289,21 @@ assign rf_wvalue0 = rf_wdata;
 
 wire wb_rf_nonzero = rf_waddr0 != 5'h0;
 
+assign ld_fwd0        = es_valid && es_load && es_wen && (es_waddr == rf_raddr0);
+assign ld_fwd1        = es_valid && es_load && es_wen && (es_waddr == rf_raddr1);
+
+assign es_fwd0        = es_valid && es_wen && (es_waddr == rf_raddr0);
+assign es_fwd1        = es_valid && es_wen && (es_waddr == rf_raddr1);
+
+assign ms_fwd0        = ms_valid && ms_wen && (ms_waddr == rf_raddr0);
+assign ms_fwd1        = ms_valid && ms_wen &&(ms_waddr == rf_raddr1);
+
 assign rf_fwd0        = rf_wvalid0 && (rf_waddr0 == rf_raddr0) && wb_rf_nonzero;
 assign rf_fwd1        = rf_wvalid0 && (rf_waddr0 == rf_raddr1) && wb_rf_nonzero;
+
+assign v_load_hazard  = (ld_fwd0 && (vid_v1_rs | vid_v1_rt)) |
+                        (ld_fwd1 && (vid_v2_rs | vid_v2_rt)) |
+                        (ld_fwd1 && (vid_v3_rs | vid_v3_rt));
 
 vie_heap_2r1w_32x32 u0_rf_heap(.clock(clock),
                                .ren0(rf_rvalid0), .raddr0(rf_raddr0), .rvalue0(rf_rvalue0),
@@ -270,27 +313,51 @@ vie_heap_2r1w_32x32 u0_rf_heap(.clock(clock),
 
 assign v1_en = (vid_v1_rs | vid_v1_rt | vid_v1_imm_upper);
 
-assign v1    = (rf_rvalid0 & rf_fwd0) ? rf_wvalue0 :
-                         (rf_rvalid0) ? rf_rvalue0 :
-                   (vid_v1_imm_upper) ? {imm[15:0],16'h0}:
-                                        32'h0;          //这里存在疑问
+// assign v1    = (rf_rvalid0 & rf_fwd0) ? rf_wvalue0 :
+//                          (rf_rvalid0) ? rf_rvalue0 :
+//                    (vid_v1_imm_upper) ? :
+//                                         32'h0;          //这里存在疑问
+assign v1    = ((vid_v1_rs | vid_v1_rt) & ld_fwd0) ? 32'h0            :  //load相关插入气泡
+               ((vid_v1_rs | vid_v1_rt) & es_fwd0) ? es_wdata         :  
+               ((vid_v1_rs | vid_v1_rt) & ms_fwd0) ? ms_wdata         :
+               ((vid_v1_rs | vid_v1_rt) & rf_fwd0) ? rf_wvalue0       :
+                           (vid_v1_rs | vid_v1_rt) ? rf_rvalue0       :
+                                (vid_v1_imm_upper) ? {imm[15:0],16'h0}:
+                                                     32'h0;
+
 
 assign v2_en = (vid_v2_rs | vid_v2_rt | vid_v2_imm_zero_ex | vid_v2_imm_sign_ex| 
                 vid_v2_imm_sa);
 
-assign v2    = ((vid_v2_rs | vid_v2_rt) & rf_fwd1) ? rf_wvalue0 :
-                           (vid_v2_rs | vid_v2_rt) ? rf_rvalue1 :
-                              (vid_v2_imm_sign_ex) ? {{16{imm[15]}},imm[15:0]} :
-                              (vid_v2_imm_zero_ex) ? {16'h0,imm[15:0]} :
-                                   (vid_v2_imm_sa) ? {27'h0,sa[4:0]} :
-                                                     32'h0;             //同上
+assign v2    = ((vid_v2_rs | vid_v2_rt) & ld_fwd1) ? 32'h0                    :
+               ((vid_v2_rs | vid_v2_rt) & es_fwd1) ? es_wdata                 :
+               ((vid_v2_rs | vid_v2_rt) & ms_fwd1) ? ms_wdata                 :
+               ((vid_v2_rs | vid_v2_rt) & rf_fwd1) ? rf_wvalue0               :
+                           (vid_v2_rs | vid_v2_rt) ? rf_rvalue1               :
+                              (vid_v2_imm_sign_ex) ? {{16{imm[15]}},imm[15:0]}:
+                              (vid_v2_imm_zero_ex) ? {16'h0,imm[15:0]}        :
+                                   (vid_v2_imm_sa) ? {27'h0,sa[4:0]}          :
+                                                     32'h0;
+// assign v2    = ((vid_v2_rs | vid_v2_rt) & rf_fwd1) ? rf_wvalue0 :
+//                            (vid_v2_rs | vid_v2_rt) ? rf_rvalue1 :
+//                               (vid_v2_imm_sign_ex) ? {{16{imm[15]}},imm[15:0]} :
+//                               (vid_v2_imm_zero_ex) ? {16'h0,imm[15:0]} :
+//                                    (vid_v2_imm_sa) ? {27'h0,sa[4:0]} :
+//                                                      32'h0;             //同上
 
 assign v3_en = (vid_v3_rs | vid_v3_rt | vid_v3_imm_offset | vid_v3_imm_instr_index);
 
-assign v3    = ((vid_v3_rs | vid_v3_rt) & rf_fwd1) ? rf_wvalue0 :
-                           (vid_v3_rs | vid_v3_rt) ? rf_rvalue1 :
-                               (vid_v3_imm_offset) ? {{14{offset[15]}},offset[15:0],2'b00}:
+assign v3    = ((vid_v3_rs | vid_v3_rt) & ld_fwd1) ? 32'h0                                 :
+               ((vid_v3_rs | vid_v3_rt) & es_fwd1) ? es_wdata                              :
+               ((vid_v3_rs | vid_v3_rt) & ms_fwd1) ? ms_wdata                              :
+               ((vid_v3_rs | vid_v3_rt) & rf_fwd1) ? rf_wvalue0                            :
+                           (vid_v3_rs | vid_v3_rt) ? rf_rvalue1                            :
+                               (vid_v3_imm_offset) ? {{14{offset[15]}},offset[15:0],2'b00} :
                                                      {6'h0,instr_index[25:0]};
+// assign v3    = ((vid_v3_rs | vid_v3_rt) & rf_fwd1) ? rf_wvalue0 :
+//                            (vid_v3_rs | vid_v3_rt) ? rf_rvalue1 :
+//                                (vid_v3_imm_offset) ? {{14{offset[15]}},offset[15:0],2'b00}:
+//                                                      {6'h0,instr_index[25:0]};
 
 assign vid_dest_rd  = inst_addu | inst_subu | inst_slt | inst_sltu | inst_and |
                       inst_or   | inst_xor  | inst_nor | inst_sll  | inst_srl |
@@ -322,7 +389,7 @@ assign issue_v3    = v3            ;
 //control logic
 
 
-assign ds_cango       = 1'b1;
+assign ds_cango       = !v_load_hazard;
 assign ds_allowin     = !ds_valid_r || ds_cango && es_allowin;
 assign ds_to_es_valid = ds_valid_r && ds_cango;
 
@@ -338,7 +405,7 @@ always @(posedge clock) begin
 end
 
 //branch & jump
-assign rs_eq_rt = (rf_rvalue0 == rf_rvalue1);
+assign rs_eq_rt = (v1 == v2);
 
 assign br_taken = ((inst_beq &&  rs_eq_rt) ||
                   (inst_bne && !rs_eq_rt) ||

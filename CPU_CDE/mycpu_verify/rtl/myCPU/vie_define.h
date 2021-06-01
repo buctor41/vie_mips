@@ -9,6 +9,8 @@
 `define Vrsbus                           73
 `define Vmsbus                           72
 `define Vdebugbus                        73
+`define Vrstatus                         41
+`define Vmstatus                         40
 
 /****** internal op*******/
 `define VIE_OP_MOV      8'h05 //LUI
