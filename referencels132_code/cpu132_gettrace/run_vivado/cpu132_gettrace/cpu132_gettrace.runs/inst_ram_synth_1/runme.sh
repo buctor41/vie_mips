@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1'
+HD_PWD='D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

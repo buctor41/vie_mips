@@ -117,6 +117,10 @@
     lw a2, offset_align(a0); \
     lw a0, offset_align(a1); \
     lw a2, offset_align(a1); \
+    bne a2,a0,  inst_error; \
+    lw a0, offset_align(a1); \
+    lw a2, offset_align(a1); \    
+    beq a2,a0,  inst_error;
     NOP4; \
     bne v0, v1, inst_error; \
     nop

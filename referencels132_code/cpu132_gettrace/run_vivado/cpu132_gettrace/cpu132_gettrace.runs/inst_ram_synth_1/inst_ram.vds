@@ -2,12 +2,12 @@
 # Vivado v2019.2 (64-bit)
 # SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
 # IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
-# Start of session at: Fri May 28 20:13:21 2021
-# Process ID: 9164
-# Current directory: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1
+# Start of session at: Mon May 31 08:30:52 2021
+# Process ID: 660
+# Current directory: D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1
 # Command line: vivado.exe -log inst_ram.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source inst_ram.tcl
-# Log file: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.vds
-# Journal file: E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1\vivado.jou
+# Log file: D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.vds
+# Journal file: D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1\vivado.jou
 #-----------------------------------------------------------
 source inst_ram.tcl -notrace
 Command: synth_design -top inst_ram -part xc7a200tfbg676-2 -mode out_of_context
@@ -16,11 +16,11 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
 INFO: [Device 21-403] Loading part xc7a200tfbg676-2
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 7600 
+INFO: Helper process launched with PID 11652 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1025.113 ; gain = 234.250
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1024.363 ; gain = 234.438
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'inst_ram' [e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:70]
+INFO: [Synth 8-638] synthesizing module 'inst_ram' [d:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:70]
 	Parameter C_FAMILY bound to: artix7 - type: string 
 	Parameter C_XDEVICEFAMILY bound to: artix7 - type: string 
 	Parameter C_ELABORATION_DIR bound to: ./ - type: string 
@@ -96,8 +96,8 @@ INFO: [Synth 8-638] synthesizing module 'inst_ram' [e:/vie_mips/referencels132_c
 	Parameter C_COUNT_36K_BRAM bound to: 256 - type: string 
 	Parameter C_COUNT_18K_BRAM bound to: 0 - type: string 
 	Parameter C_EST_POWER_SUMMARY bound to: Estimated Power for IP     :     10.194003 mW - type: string 
-INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_4' declared at 'e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195321' bound to instance 'U0' of component 'blk_mem_gen_v8_4_4' [e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:236]
-INFO: [Synth 8-256] done synthesizing module 'inst_ram' (11#1) [e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:70]
+INFO: [Synth 8-3491] module 'blk_mem_gen_v8_4_4' declared at 'd:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/hdl/blk_mem_gen_v8_4_vhsyn_rfs.vhd:195321' bound to instance 'U0' of component 'blk_mem_gen_v8_4_4' [d:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:236]
+INFO: [Synth 8-256] done synthesizing module 'inst_ram' (11#1) [d:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/synth/inst_ram.vhd:70]
 WARNING: [Synth 8-3331] design blk_mem_output_block has unconnected port CLKB
 WARNING: [Synth 8-3331] design blk_mem_output_block has unconnected port DOUTB_I[31]
 WARNING: [Synth 8-3331] design blk_mem_output_block has unconnected port DOUTB_I[30]
@@ -200,7 +200,7 @@ WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized253 h
 WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper_init__parameterized253 has unconnected port ADDRB[4]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:04:58 ; elapsed = 00:05:14 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished RTL Elaboration : Time (s): cpu = 00:05:23 ; elapsed = 00:05:38 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -213,48 +213,48 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:05:00 ; elapsed = 00:05:16 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Handling Custom Attributes : Time (s): cpu = 00:05:25 ; elapsed = 00:05:41 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:05:00 ; elapsed = 00:05:16 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:05:25 ; elapsed = 00:05:41 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.366 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.474 . Memory (MB): peak = 2518.812 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 256 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram_ooc.xdc] for cell 'U0'
-Finished Parsing XDC File [e:/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram_ooc.xdc] for cell 'U0'
-Parsing XDC File [E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc]
+Parsing XDC File [d:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [d:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/rtl/xilinx_ip/inst_ram/inst_ram_ooc.xdc] for cell 'U0'
+Parsing XDC File [D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.017 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 2518.812 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:01 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 2518.812 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:05:16 ; elapsed = 00:05:42 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Constraint Validation : Time (s): cpu = 00:05:44 ; elapsed = 00:06:30 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a200tfbg676-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:05:16 ; elapsed = 00:05:42 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Loading Part and Timing Information : Time (s): cpu = 00:05:44 ; elapsed = 00:06:30 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for U0. (constraint file  E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for U0. (constraint file  D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:05:16 ; elapsed = 00:05:42 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:05:44 ; elapsed = 00:06:30 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:05:24 ; elapsed = 00:05:53 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:05:53 ; elapsed = 00:06:40 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -306,7 +306,7 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:05:46 ; elapsed = 00:06:17 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:09 ; elapsed = 00:06:59 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -318,13 +318,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:05:57 ; elapsed = 00:06:28 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:19 ; elapsed = 00:07:11 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:05:58 ; elapsed = 00:06:29 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Timing Optimization : Time (s): cpu = 00:06:20 ; elapsed = 00:07:12 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -336,7 +336,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:05:59 ; elapsed = 00:06:30 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Technology Mapping : Time (s): cpu = 00:06:21 ; elapsed = 00:07:13 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -360,13 +360,13 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:06:03 ; elapsed = 00:06:35 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished IO Insertion : Time (s): cpu = 00:06:26 ; elapsed = 00:07:18 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:06:03 ; elapsed = 00:06:35 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Renaming Generated Instances : Time (s): cpu = 00:06:26 ; elapsed = 00:07:18 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -385,25 +385,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Renaming Generated Ports : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Handling Custom Attributes : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Renaming Generated Nets : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -451,105 +451,159 @@ Report Cell Usage:
 |30    |RAMB36E1_12  |     1|
 |31    |RAMB36E1_120 |     1|
 |32    |RAMB36E1_121 |     1|
-|33    |RAMB36E1_122 |     1|
+|33    |RAMB36E1_122 |     2|
 |34    |RAMB36E1_123 |     1|
 |35    |RAMB36E1_124 |     1|
-|36    |RAMB36E1_13  |     1|
-|37    |RAMB36E1_14  |     1|
-|38    |RAMB36E1_15  |     1|
-|39    |RAMB36E1_16  |     1|
-|40    |RAMB36E1_17  |     1|
-|41    |RAMB36E1_18  |     1|
-|42    |RAMB36E1_19  |     1|
-|43    |RAMB36E1_2   |     1|
-|44    |RAMB36E1_20  |     1|
-|45    |RAMB36E1_21  |     1|
-|46    |RAMB36E1_22  |     1|
-|47    |RAMB36E1_23  |     1|
-|48    |RAMB36E1_24  |     1|
-|49    |RAMB36E1_25  |     1|
-|50    |RAMB36E1_26  |     1|
-|51    |RAMB36E1_27  |     1|
-|52    |RAMB36E1_28  |     1|
-|53    |RAMB36E1_29  |     1|
-|54    |RAMB36E1_3   |     1|
-|55    |RAMB36E1_30  |     1|
-|56    |RAMB36E1_31  |   132|
-|57    |RAMB36E1_32  |     1|
-|58    |RAMB36E1_33  |     1|
-|59    |RAMB36E1_34  |     1|
-|60    |RAMB36E1_35  |     1|
-|61    |RAMB36E1_36  |     1|
-|62    |RAMB36E1_37  |     1|
-|63    |RAMB36E1_38  |     1|
-|64    |RAMB36E1_39  |     1|
-|65    |RAMB36E1_4   |     1|
-|66    |RAMB36E1_40  |     1|
-|67    |RAMB36E1_41  |     1|
-|68    |RAMB36E1_42  |     1|
-|69    |RAMB36E1_43  |     1|
-|70    |RAMB36E1_44  |     1|
-|71    |RAMB36E1_45  |     1|
-|72    |RAMB36E1_46  |     1|
-|73    |RAMB36E1_47  |     1|
-|74    |RAMB36E1_48  |     1|
-|75    |RAMB36E1_49  |     1|
-|76    |RAMB36E1_5   |     1|
-|77    |RAMB36E1_50  |     1|
-|78    |RAMB36E1_51  |     1|
-|79    |RAMB36E1_52  |     1|
-|80    |RAMB36E1_53  |     1|
-|81    |RAMB36E1_54  |     1|
-|82    |RAMB36E1_55  |     1|
-|83    |RAMB36E1_56  |     1|
-|84    |RAMB36E1_57  |     1|
-|85    |RAMB36E1_58  |     1|
-|86    |RAMB36E1_59  |     1|
-|87    |RAMB36E1_6   |     1|
-|88    |RAMB36E1_60  |     1|
-|89    |RAMB36E1_61  |     1|
-|90    |RAMB36E1_62  |     1|
-|91    |RAMB36E1_63  |     1|
-|92    |RAMB36E1_64  |     1|
-|93    |RAMB36E1_65  |     1|
-|94    |RAMB36E1_66  |     1|
-|95    |RAMB36E1_67  |     1|
-|96    |RAMB36E1_68  |     1|
-|97    |RAMB36E1_69  |     1|
-|98    |RAMB36E1_7   |     1|
-|99    |RAMB36E1_70  |     1|
-|100   |RAMB36E1_71  |     1|
-|101   |RAMB36E1_72  |     1|
-|102   |RAMB36E1_73  |     1|
-|103   |RAMB36E1_74  |     1|
-|104   |RAMB36E1_75  |     1|
-|105   |RAMB36E1_76  |     1|
-|106   |RAMB36E1_77  |     1|
-|107   |RAMB36E1_78  |     1|
-|108   |RAMB36E1_79  |     1|
-|109   |RAMB36E1_8   |     1|
-|110   |RAMB36E1_80  |     1|
-|111   |RAMB36E1_81  |     1|
-|112   |RAMB36E1_82  |     1|
-|113   |RAMB36E1_83  |     1|
-|114   |RAMB36E1_84  |     1|
-|115   |RAMB36E1_85  |     1|
-|116   |RAMB36E1_86  |     1|
-|117   |RAMB36E1_87  |     1|
-|118   |RAMB36E1_88  |     1|
-|119   |RAMB36E1_89  |     1|
-|120   |RAMB36E1_9   |     1|
-|121   |RAMB36E1_90  |     1|
-|122   |RAMB36E1_91  |     1|
-|123   |RAMB36E1_92  |     1|
-|124   |RAMB36E1_93  |     1|
-|125   |RAMB36E1_94  |     1|
-|126   |RAMB36E1_95  |     1|
-|127   |RAMB36E1_96  |     1|
-|128   |RAMB36E1_97  |     1|
-|129   |RAMB36E1_98  |     1|
-|130   |RAMB36E1_99  |     1|
-|131   |FDRE         |    13|
+|36    |RAMB36E1_125 |     1|
+|37    |RAMB36E1_126 |     1|
+|38    |RAMB36E1_127 |     1|
+|39    |RAMB36E1_128 |     1|
+|40    |RAMB36E1_129 |     1|
+|41    |RAMB36E1_13  |     1|
+|42    |RAMB36E1_130 |     1|
+|43    |RAMB36E1_131 |     1|
+|44    |RAMB36E1_132 |     1|
+|45    |RAMB36E1_133 |     1|
+|46    |RAMB36E1_134 |     1|
+|47    |RAMB36E1_135 |     1|
+|48    |RAMB36E1_136 |     1|
+|49    |RAMB36E1_137 |     1|
+|50    |RAMB36E1_138 |     1|
+|51    |RAMB36E1_139 |     1|
+|52    |RAMB36E1_14  |     1|
+|53    |RAMB36E1_140 |     1|
+|54    |RAMB36E1_141 |     1|
+|55    |RAMB36E1_142 |     1|
+|56    |RAMB36E1_143 |     1|
+|57    |RAMB36E1_144 |     1|
+|58    |RAMB36E1_145 |     1|
+|59    |RAMB36E1_146 |     1|
+|60    |RAMB36E1_147 |     1|
+|61    |RAMB36E1_148 |     1|
+|62    |RAMB36E1_149 |     1|
+|63    |RAMB36E1_15  |     1|
+|64    |RAMB36E1_150 |     1|
+|65    |RAMB36E1_151 |     1|
+|66    |RAMB36E1_152 |     1|
+|67    |RAMB36E1_153 |     1|
+|68    |RAMB36E1_154 |     1|
+|69    |RAMB36E1_155 |     1|
+|70    |RAMB36E1_156 |     1|
+|71    |RAMB36E1_157 |     1|
+|72    |RAMB36E1_158 |     1|
+|73    |RAMB36E1_159 |     1|
+|74    |RAMB36E1_16  |     1|
+|75    |RAMB36E1_160 |     1|
+|76    |RAMB36E1_161 |     1|
+|77    |RAMB36E1_162 |     1|
+|78    |RAMB36E1_163 |     1|
+|79    |RAMB36E1_164 |     1|
+|80    |RAMB36E1_165 |     1|
+|81    |RAMB36E1_166 |     2|
+|82    |RAMB36E1_167 |     1|
+|83    |RAMB36E1_168 |     1|
+|84    |RAMB36E1_169 |     1|
+|85    |RAMB36E1_17  |     1|
+|86    |RAMB36E1_170 |     1|
+|87    |RAMB36E1_171 |     1|
+|88    |RAMB36E1_172 |     1|
+|89    |RAMB36E1_173 |     1|
+|90    |RAMB36E1_174 |     1|
+|91    |RAMB36E1_175 |     1|
+|92    |RAMB36E1_176 |     1|
+|93    |RAMB36E1_177 |     1|
+|94    |RAMB36E1_178 |     1|
+|95    |RAMB36E1_18  |     1|
+|96    |RAMB36E1_19  |     1|
+|97    |RAMB36E1_2   |     1|
+|98    |RAMB36E1_20  |     1|
+|99    |RAMB36E1_21  |     1|
+|100   |RAMB36E1_22  |     1|
+|101   |RAMB36E1_23  |     1|
+|102   |RAMB36E1_24  |     1|
+|103   |RAMB36E1_25  |     1|
+|104   |RAMB36E1_26  |     1|
+|105   |RAMB36E1_27  |     1|
+|106   |RAMB36E1_28  |     1|
+|107   |RAMB36E1_29  |     1|
+|108   |RAMB36E1_3   |     1|
+|109   |RAMB36E1_30  |     1|
+|110   |RAMB36E1_31  |     1|
+|111   |RAMB36E1_32  |     1|
+|112   |RAMB36E1_33  |     1|
+|113   |RAMB36E1_34  |     1|
+|114   |RAMB36E1_35  |     1|
+|115   |RAMB36E1_36  |     1|
+|116   |RAMB36E1_37  |     1|
+|117   |RAMB36E1_38  |     1|
+|118   |RAMB36E1_39  |     1|
+|119   |RAMB36E1_4   |     1|
+|120   |RAMB36E1_40  |     1|
+|121   |RAMB36E1_41  |     1|
+|122   |RAMB36E1_42  |     1|
+|123   |RAMB36E1_43  |     1|
+|124   |RAMB36E1_44  |     1|
+|125   |RAMB36E1_45  |    76|
+|126   |RAMB36E1_46  |     1|
+|127   |RAMB36E1_47  |     1|
+|128   |RAMB36E1_48  |     1|
+|129   |RAMB36E1_49  |     1|
+|130   |RAMB36E1_5   |     1|
+|131   |RAMB36E1_50  |     1|
+|132   |RAMB36E1_51  |     1|
+|133   |RAMB36E1_52  |     1|
+|134   |RAMB36E1_53  |     1|
+|135   |RAMB36E1_54  |     1|
+|136   |RAMB36E1_55  |     1|
+|137   |RAMB36E1_56  |     1|
+|138   |RAMB36E1_57  |     1|
+|139   |RAMB36E1_58  |     1|
+|140   |RAMB36E1_59  |     1|
+|141   |RAMB36E1_6   |     1|
+|142   |RAMB36E1_60  |     1|
+|143   |RAMB36E1_61  |     1|
+|144   |RAMB36E1_62  |     1|
+|145   |RAMB36E1_63  |     1|
+|146   |RAMB36E1_64  |     1|
+|147   |RAMB36E1_65  |     1|
+|148   |RAMB36E1_66  |     1|
+|149   |RAMB36E1_67  |     1|
+|150   |RAMB36E1_68  |     1|
+|151   |RAMB36E1_69  |     1|
+|152   |RAMB36E1_7   |     1|
+|153   |RAMB36E1_70  |     1|
+|154   |RAMB36E1_71  |     1|
+|155   |RAMB36E1_72  |     1|
+|156   |RAMB36E1_73  |     1|
+|157   |RAMB36E1_74  |     1|
+|158   |RAMB36E1_75  |     1|
+|159   |RAMB36E1_76  |     1|
+|160   |RAMB36E1_77  |     1|
+|161   |RAMB36E1_78  |     1|
+|162   |RAMB36E1_79  |     1|
+|163   |RAMB36E1_8   |     1|
+|164   |RAMB36E1_80  |     1|
+|165   |RAMB36E1_81  |     1|
+|166   |RAMB36E1_82  |     1|
+|167   |RAMB36E1_83  |     1|
+|168   |RAMB36E1_84  |     1|
+|169   |RAMB36E1_85  |     1|
+|170   |RAMB36E1_86  |     1|
+|171   |RAMB36E1_87  |     1|
+|172   |RAMB36E1_88  |     1|
+|173   |RAMB36E1_89  |     1|
+|174   |RAMB36E1_9   |     1|
+|175   |RAMB36E1_90  |     1|
+|176   |RAMB36E1_91  |     1|
+|177   |RAMB36E1_92  |     1|
+|178   |RAMB36E1_93  |     1|
+|179   |RAMB36E1_94  |     1|
+|180   |RAMB36E1_95  |     1|
+|181   |RAMB36E1_96  |     1|
+|182   |RAMB36E1_97  |     1|
+|183   |RAMB36E1_98  |     1|
+|184   |RAMB36E1_99  |     1|
+|185   |FDRE         |    13|
 +------+-------------+------+
 
 Report Instance Areas: 
@@ -1076,35 +1130,35 @@ Report Instance Areas:
 |518   |            \prim_init.ram                   |blk_mem_gen_prim_wrapper_init__parameterized8   |     1|
 +------+---------------------------------------------+------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Finished Writing Synthesis Report : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 263 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:06:18 . Memory (MB): peak = 2521.688 ; gain = 1730.824
-Synthesis Optimization Complete : Time (s): cpu = 00:06:04 ; elapsed = 00:06:36 . Memory (MB): peak = 2521.688 ; gain = 1730.824
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:49 ; elapsed = 00:06:37 . Memory (MB): peak = 2518.812 ; gain = 1728.887
+Synthesis Optimization Complete : Time (s): cpu = 00:06:27 ; elapsed = 00:07:19 . Memory (MB): peak = 2518.812 ; gain = 1728.887
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.150 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.136 . Memory (MB): peak = 2518.812 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 640 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2518.812 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 17 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:06:15 ; elapsed = 00:06:55 . Memory (MB): peak = 2521.688 ; gain = 2053.297
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.018 . Memory (MB): peak = 2521.688 ; gain = 0.000
+synth_design: Time (s): cpu = 00:06:38 ; elapsed = 00:07:39 . Memory (MB): peak = 2518.812 ; gain = 2049.930
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.016 . Memory (MB): peak = 2518.812 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.dcp' has been generated.
 WARNING: [Common 17-576] 'use_project_ipc' is deprecated. This option is deprecated and no longer used.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP inst_ram, cache-ID = 9c98d5434c6594eb
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP inst_ram, cache-ID = 74648695c135e284
 INFO: [Coretcl 2-1174] Renamed 517 cell refs.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 2521.688 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 2518.812 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint 'E:/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'D:/vie_mips/vie_mips/referencels132_code/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.runs/inst_ram_synth_1/inst_ram.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file inst_ram_utilization_synth.rpt -pb inst_ram_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri May 28 20:20:35 2021...
+INFO: [Common 17-206] Exiting Vivado at Mon May 31 08:38:50 2021...

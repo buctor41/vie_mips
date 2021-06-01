@@ -25,12 +25,12 @@ wire        ds_ready_go;
 
 wire [31                 :0] fs_pc;
 reg  [`FS_TO_DS_BUS_WD -1:0] fs_to_ds_bus_r;
-assign fs_pc = fs_to_ds_bus[31:0];
+assign fs_pc = fs_to_ds_bus[63:32];
 
 wire [31:0] ds_inst;
 wire [31:0] ds_pc  ;
-assign {ds_inst,
-        ds_pc  } = fs_to_ds_bus_r;
+assign {ds_pc,
+        ds_inst} = fs_to_ds_bus_r;
 
 wire        rf_we   ;
 wire [ 4:0] rf_waddr;

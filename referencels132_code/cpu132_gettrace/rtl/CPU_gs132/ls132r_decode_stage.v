@@ -140,6 +140,7 @@ assign issuebus_o[ 95: 95] = issue_v2_en      ;
 assign issuebus_o[127: 96] = issue_v2         ;
 assign issuebus_o[128:128] = issue_v3_en      ;
 assign issuebus_o[160:129] = issue_v3         ;
+
 assign issuebus_o[161:161] = issue_v1_h_en    ;
 assign issuebus_o[193:162] = issue_v1_h       ;
 assign issuebus_o[194:194] = issue_v2_h_en    ;
@@ -908,7 +909,7 @@ assign dec_v1_rs =
 /** Privileged Instructions **/
    ;
 
-assign dec_v1_rt = 1'b0 
+assign dec_v1_rt = 1'b0  // why ? 
 /** CPU Shift **/
    |inst_SLL     |inst_SLLV    |inst_SRA     |inst_SRAV    |inst_SRL     |inst_SRLV
 /** Privileged Instructions **/
@@ -1050,7 +1051,7 @@ gr_heap_2r1w_32x32
 /****** FPR read ******/
 assign v1_en = (dec_v1_rs | dec_v1_rt | dec_v1_fs | dec_v1_fcr | dec_v1_imm_upper);
 
-assign v1 =              (dec_v1_fs & fr_fwd0) ? fr_wvalue0 :
+assign v1 =              (dec_v1_fs & fr_fwd0) ? fr_wvalue0 : 
            ((dec_v1_rs | dec_v1_rt) & gr_fwd0) ? gr_wvalue0 : 
                                    (dec_v1_fs) ? fr_rvalue0 :
                        (dec_v1_rs | dec_v1_rt) ? gr_rvalue0 : 
@@ -1080,6 +1081,8 @@ assign v3 = ((dec_v3_fs | dec_v3_ft | dec_v3_fr) & fr_fwd1) ? fr_wvalue0 :
                                         (dec_v3_imm_offset) ? {{14{offset[15]}}, offset[15:0], 2'b00} :
                                       (dec_v3_imm_pos_size) ? {22'h0, rd[4:0], sa[4:0]} : 
                                                               {6'h0, instr_index[25:0]};
+
+
 
 
 assign decdest_rd    = inst_ADD|inst_ADDU|inst_AND

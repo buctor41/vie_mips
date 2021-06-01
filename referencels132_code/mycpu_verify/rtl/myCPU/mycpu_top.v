@@ -1,3 +1,4 @@
+`include "vie_define.h"
 module mycpu_top(
     input         clk,
     input         resetn,
@@ -45,23 +46,47 @@ assign data_hazard_bus = {es_to_ds_bus ,
                           ms_to_ds_bus ,
                           ws_to_ds_bus 
                          };
+
+
+wire [`Vfsbus             -1:0] fsbus;
+assign {fs_to_ds_valid,fs_to_ds_bus} = fsbus;
+wire [`Vfromifcbus        -1:0] ifc_inst;
+assign ifc_inst = inst_sram_rdata;
+wire [`Vtoifcbus          -1:0] inst_ifc;
+assign {inst_sram_en  ,
+        inst_sram_wen ,
+        inst_sram_addr,
+        inst_sram_wdata
+} = inst_ifc;
 // IF stage
-if_stage if_stage(
-    .clk            (clk            ),
+// if_stage if_stage(
+//     .clk            (clk            ),
+//     .reset          (reset          ),
+//     //allowin
+//     .ds_allowin     (ds_allowin     ),
+//     //brbus
+//     .br_bus         (br_bus         ),
+//     //outputs
+//     .fs_to_ds_valid (fs_to_ds_valid ),
+//     .fs_to_ds_bus   (fs_to_ds_bus   ),
+//     // inst sram interface
+//     .inst_sram_en   (inst_sram_en   ),
+//     .inst_sram_wen  (inst_sram_wen  ),
+//     .inst_sram_addr (inst_sram_addr ),
+//     .inst_sram_wdata(inst_sram_wdata),
+//     .inst_sram_rdata(inst_sram_rdata)
+// );
+vie_if_stage if_stage(
+    .clock          (clk            ),
     .reset          (reset          ),
-    //allowin
+    //ds_allowin
     .ds_allowin     (ds_allowin     ),
-    //brbus
-    .br_bus         (br_bus         ),
-    //outputs
-    .fs_to_ds_valid (fs_to_ds_valid ),
-    .fs_to_ds_bus   (fs_to_ds_bus   ),
-    // inst sram interface
-    .inst_sram_en   (inst_sram_en   ),
-    .inst_sram_wen  (inst_sram_wen  ),
-    .inst_sram_addr (inst_sram_addr ),
-    .inst_sram_wdata(inst_sram_wdata),
-    .inst_sram_rdata(inst_sram_rdata)
+    //brbus 
+    .brbus_i        (br_bus         ),
+    .fsbus_o        (fsbus          ),
+
+    .ifc_inst_i     (ifc_inst       ),
+    .inst_ifc_o     (inst_ifc       )
 );
 // ID stage
 id_stage id_stage(
