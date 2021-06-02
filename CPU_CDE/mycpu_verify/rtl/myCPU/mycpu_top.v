@@ -30,7 +30,7 @@ wire         ws_allowin;
 
 wire [`Vbrbus       -1:0] brbus;
 wire [`Vfsbus       -1:0] fsbus;
-wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�??
+wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�???
 wire [`Vtoifcbus    -1:0] inst_ifc;     //
 wire [`Vfromifcbus  -1:0] ifc_data;
 wire [`Vtoifcbus    -1:0] data_ifc;

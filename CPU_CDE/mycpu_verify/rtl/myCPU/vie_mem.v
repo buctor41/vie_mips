@@ -1,4 +1,3 @@
-`include "vie_define.h"
 module vie_mem_stage(
     clock,
     reset,
@@ -22,8 +21,10 @@ output [`Vmstatus      -1:0] mstatus_o;
 
 
 
-wire        rs_valid        = rsbus_i[72:72];
-wire        rs_res_from_mem = rsbus_i[71:71];
+wire        rs_valid        = rsbus_i[82:82];
+wire        rs_res_from_mem = rsbus_i[81:81];
+wire [7 :0] rs_op           = rsbus_i[80:73];
+wire [1 :0] rs_sel          = rsbus_i[72:71];
 wire [6 :0] rs_dest         = rsbus_i[70:64];
 wire [31:0] rs_fixres       = rsbus_i[63:32];
 wire [31:0] rs_pc           = rsbus_i[31: 0];
@@ -45,18 +46,22 @@ reg [`Vrsbus - 1:0] rsbus_r;
 
 wire        ms_valid;
 wire        ms_res_from_mem;
-wire [6:0]  ms_dest;
+wire [7 :0] ms_op;
+wire [1 :0] ms_sel;
+wire [6 :0] ms_dest;
 wire [31:0] ms_fixres;
 wire [31:0] ms_pc;
 
 assign {ms_valid,
         ms_res_from_mem,
+        ms_op,
+        ms_sel,
         ms_dest,
         ms_fixres,
         ms_pc
 } = rsbus_r;
 
-wire [31:0] data;
+// wire [31:0] data;
 
 //control signals
 reg  ms_valid_r;
@@ -79,10 +84,65 @@ always @(posedge clock) begin
     end
 end
 
+//load
+wire op_lw  = ms_op == `VIE_OP_LW;
+
+wire op_lb  = ms_op == `VIE_OP_LB;
+
+wire op_lbu = ms_op == `VIE_OP_LBU;
+
+wire op_lh  = ms_op == `VIE_OP_LH;
+
+wire op_lhu = ms_op == `VIE_OP_LHU;
+
+wire op_lwl = ms_op == `VIE_OP_LWL;
+
+wire op_lwr = ms_op == `VIE_OP_LWR;
+
+wire [31:0] load_res;
+wire [31:0] lw_res;
+wire [31:0] lb_res;
+wire [31:0] lbu_res;
+wire [31:0] lh_res;
+wire [31:0] lhu_res;
+wire [31:0] lwl_res;
+wire [31:0] lwr_res;
+
+assign lw_res   =  {32{op_lw}}  & mem_data;
+
+assign lb_res   =  {32{op_lb}} & ({32{(ms_sel[1:0] == 2'b00)}}  & {{24{mem_data[7]}} ,mem_data[7:0]  } |
+                                  {32{(ms_sel[1:0] == 2'b01)}}  & {{24{mem_data[15]}},mem_data[15:8] } |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {{24{mem_data[23]}},mem_data[23:16]} |
+                                  {32{(ms_sel[1:0] == 2'b11)}}  & {{24{mem_data[31]}},mem_data[31:24]});
+
+assign lbu_res  = {32{op_lbu}} & ({32{(ms_sel[1:0] == 2'b00)}}  & {24'b0,mem_data[7:0]  } |
+                                  {32{(ms_sel[1:0] == 2'b01)}}  & {24'b0,mem_data[15:8] } |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {24'b0,mem_data[23:16]} |
+                                  {32{(ms_sel[1:0] == 2'b11)}}  & {24'b0,mem_data[31:24]});
+
+assign lh_res   = {32{op_lh}}  & ({32{(ms_sel[1:0] == 2'b00)}}  & {{16{mem_data[15]}},mem_data[15:0]}  |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {{16{mem_data[31]}},mem_data[31:16]});
+
+assign lhu_res  = {32{op_lhu}} & ({32{(ms_sel[1:0] == 2'b00)}}  & {16'b0,mem_data[15:0]} |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {16'b0,mem_data[31:16]});
+
+assign lwl_res  = {32{op_lwl}} & ({32{(ms_sel[1:0] == 2'b00)}}  & {mem_data[7 : 0],ms_fixres[23:0]}  | 
+                                  {32{(ms_sel[1:0] == 2'b01)}}  & {mem_data[15: 0],ms_fixres[15:0]}  |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {mem_data[23: 0],ms_fixres[ 7:0]}  |
+                                  {32{(ms_sel[1:0] == 2'b11)}}  & mem_data[31:0]);
+
+assign lwr_res  = {32{op_lwr}} & ({32{(ms_sel[1:0] == 2'b00)}}  & mem_data[31:0]                     |
+                                  {32{(ms_sel[1:0] == 2'b01)}}  & {ms_fixres[31:24],mem_data[31: 8]} |
+                                  {32{(ms_sel[1:0] == 2'b10)}}  & {ms_fixres[31:16],mem_data[31:16]} |
+                                  {32{(ms_sel[1:0] == 2'b11)}}  & {ms_fixres[31: 8],mem_data[31:24]});
+
+assign load_res = lw_res | lb_res | lbu_res | lh_res | lhu_res | lwl_res | lwr_res;
+
+
 assign final_valid  = ms_to_ws_valid;
 assign final_dest   = ms_dest       ;
 assign final_pc     = ms_pc         ;
-assign final_res    = ms_res_from_mem ? mem_data : ms_fixres;
+assign final_res    = ms_res_from_mem ? load_res : ms_fixres;
 
 assign mstatus_o[39:39] = ms_valid_r;
 assign mstatus_o[38:32] = final_dest;

@@ -1,4 +1,3 @@
-`include "vtools.v"
 /****** Bus Width *********/
 `define Vbrbus                           33
 `define Vfsbus                           65
@@ -6,7 +5,7 @@
 `define Vtoifcbus                        69
 `define Vissuebus                        147
 `define Vwsbus                           38
-`define Vrsbus                           73
+`define Vrsbus                           83
 `define Vmsbus                           72
 `define Vdebugbus                        73
 `define Vrstatus                         41
@@ -38,13 +37,30 @@
 `define VIE_OP_SLT      8'h26 //SLTI
 `define VIE_OP_SLTU     8'h27 //SLTIU
 
+`define VIE_OP_J        8'h2c
 `define VIE_OP_JR       8'h2d
 `define VIE_OP_JAL      8'h2e
+`define VIE_OP_JALR     8'h2f
 
 `define VIE_OP_BEQ      8'h30
 `define VIE_OP_BNE      8'h31
+`define VIE_OP_BLEZ     8'h32
+`define VIE_OP_BGTZ     8'h33
+`define VIE_OP_BLTZ     8'h34
+`define VIE_OP_BGEZ     8'h35
+`define VIE_OP_BLTZAL   8'h36
+`define VIE_OP_BGEZAL   8'h37
 
-
+`define VIE_OP_LB       8'h90
+`define VIE_OP_LH       8'h91
 `define VIE_OP_LW       8'h92
+`define VIE_OP_LBU      8'h94
+`define VIE_OP_LHU      8'h95
+`define VIE_OP_SB       8'h98
+`define VIE_OP_SH       8'h99
 `define VIE_OP_SW       8'h9a
 
+`define VIE_OP_LWL      8'hb8
+`define VIE_OP_LWR      8'hb9
+`define VIE_OP_SWL      8'hba
+`define VIE_OP_SWR      8'hbb

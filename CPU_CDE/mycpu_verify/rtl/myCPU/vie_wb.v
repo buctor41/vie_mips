@@ -1,5 +1,3 @@
-`include "vie_define.h"
-
 module vie_wb_stage(
     clock,
     reset,

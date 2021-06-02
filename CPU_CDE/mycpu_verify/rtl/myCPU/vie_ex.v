@@ -1,5 +1,4 @@
 `include "vie_define.h"
-
 module vie_exe_stage(
     clock,
     reset,
@@ -35,12 +34,16 @@ wire [31:0]    issue_v3 = issuebus_i[ 31:  0];
 //rsbus unknown
 wire        rs_valid;
 wire        rs_is_load;
-wire [6: 0] rs_dest;
+wire [7 :0] rs_op;
+wire [1 :0] rs_sel; 
+wire [6 :0] rs_dest;
 wire [31:0] rs_fixres;
 wire [31:0] rs_pc;
 
-assign rsbus_o[72:72] = rs_valid;
-assign rsbus_o[71:71] = rs_is_load;
+assign rsbus_o[82:82] = rs_valid;
+assign rsbus_o[81:81] = rs_is_load;
+assign rsbus_o[80:73] = rs_op;
+assign rsbus_o[72:71] = rs_sel;
 assign rsbus_o[70:64] = rs_dest;
 assign rsbus_o[63:32] = rs_fixres;
 assign rsbus_o[31: 0] = rs_pc;
@@ -128,6 +131,32 @@ wire [31:0] mul_prod_h;
 wire [31:0] mul_prod_l;
 
 
+//sel
+wire [1:0]  load_sel;
+wire [1:0]  lb_sel;
+wire [1:0]  lh_sel;
+wire [1:0]  lwl_sel;
+wire [1:0]  lwr_sel;
+
+
+
+//Write sel
+wire [1:0] swen;
+wire [3:0] store_sel;
+wire [3:0] sw_sel;
+wire [3:0] sb_sel;
+wire [3:0] sh_sel;
+wire [3:0] swl_sel;
+wire [3:0] swr_sel;
+
+//store data
+wire [31:0] store_wdata;
+wire [31:0] sw_wdata;
+wire [31:0] sb_wdata;
+wire [31:0] sh_wdata;
+wire [31:0] swl_wdata;
+wire [31:0] swr_wdata;
+
 //EXECUTION
 wire op_add     = es_op == `VIE_OP_ADD;
 wire op_addu    = es_op == `VIE_OP_ADDU;
@@ -162,23 +191,38 @@ wire op_mthi    = es_op == `VIE_OP_MTHI;
 wire op_mtlo    = es_op == `VIE_OP_MTLO;
 
 
-
+wire op_lb      = es_op == `VIE_OP_LB;
+wire op_lbu     = es_op == `VIE_OP_LBU;
+wire op_lh      = es_op == `VIE_OP_LH;
+wire op_lhu     = es_op == `VIE_OP_LHU;
 wire op_lw      = es_op == `VIE_OP_LW;
+wire op_lwl     = es_op == `VIE_OP_LWL;
+wire op_lwr     = es_op == `VIE_OP_LWR;
+
 wire op_sw      = es_op == `VIE_OP_SW;
+wire op_sb      = es_op == `VIE_OP_SB;
+wire op_sh      = es_op == `VIE_OP_SH;
+wire op_swl     = es_op == `VIE_OP_SWL;
+wire op_swr     = es_op == `VIE_OP_SWR;
 
 wire op_jal     = es_op == `VIE_OP_JAL;
+wire op_jalr    = es_op == `VIE_OP_JALR;
+wire op_bltzal  = es_op == `VIE_OP_BLTZAL;
+wire op_bgezal  = es_op == `VIE_OP_BGEZAL;
 
 wire mult_op    = op_mult | op_multu;
 
 wire div_op     = op_div  | op_divu;
 
-wire link_op    = op_jal;
+wire link_op    = op_jal  | op_bltzal | op_bgezal | op_jalr;
 
 wire sub_op     = op_subu | op_slt | op_sltu | op_sub;
 
-wire load_op    = op_lw;
+wire load_op    = op_lw   | op_lb  | op_lbu | op_lh | op_lhu | op_lwl | op_lwr; 
 
-wire store_op   = op_sw;
+wire sel_op     = op_lb   | op_lbu | op_lh  | op_lhu | op_lwl | op_lwr;
+
+wire store_op   = op_sw   | op_sb  | op_sh  | op_swl | op_swr;
 
 wire mem_op     = store_op | load_op;
 
@@ -367,29 +411,6 @@ assign {div_quot,div_rem} = op_div ? {signed_quot,signed_rem}    :
 assign div_not_complete = signed_div_ready   || (signed_div_status == 2'b01) || 
                           unsigned_div_ready || (unsigned_div_status == 2'b01);
 
-// assign div_a = es_v1;
-// assign div_b = es_v2;
-
-// assign unsigned_quot = op_divu ? div_a / div_b :
-//                                  32'h0;
-// assign unsigned_rem  = op_divu ? div_a % div_b :
-//                                  32'h0;
-
-// assign signed_quot   = op_div ? $signed(div_a) / $signed(div_b) :
-//                                 32'h0;
-// assign signed_rem    = op_div ? $signed(div_a) % $signed(div_b) :
-//                                 32'h0;
-
-// assign div_quot      = div_op ? op_div  ?  signed_quot :
-//                                 op_divu ? unsigned_quot:
-//                                             32'h0      :
-//                                             32'h0;
-// assign div_rem       = div_op ? op_div  ?  signed_rem  :
-//                                 op_divu ?  unsigned_rem:
-//                                            32'h0       :
-//                                            32'h0;
-
-
 //Shifter
 assign shft0_a =  shft_op ? es_v1 : 32'h0;
 
@@ -417,7 +438,60 @@ wire [31:0] shftr_tmp3 = shft0_b[4] ? {{16{shftr_adding_bit}},shftr_tmp2[31:16]}
 assign shft0_r_res = shftr_tmp3;
 
 
+//load sel
+assign lb_sel = adder_res[1:0];
+assign lh_sel = adder_res[1:0];
+assign lwl_sel = adder_res[1:0];
+assign lwr_sel = adder_res[1:0];
 
+assign load_sel = {2{op_lb}}  & lb_sel  |
+                  {2{op_lbu}} & lb_sel  |
+                  {2{op_lh}}  & lh_sel  |
+                  {2{op_lhu}} & lh_sel  |
+                  {2{op_lwl}} & lwl_sel |
+                  {2{op_lwr}} & lwr_sel;
+//store sel
+assign swen    = adder_res[1:0];
+assign sw_sel  = {4{op_sw}} & 4'hf;
+assign sb_sel  = {4{op_sb}} & ({4{(swen[1:0] == 2'b00)}} & 4'b0001 |
+                               {4{(swen[1:0] == 2'b01)}} & 4'b0010 |
+                               {4{(swen[1:0] == 2'b10)}} & 4'b0100 |
+                               {4{(swen[1:0] == 2'b11)}} & 4'b1000
+                              );
+assign sh_sel  = {4{op_sh}} & ({4{(swen[1:0] == 2'b00)}} & 4'b0011 |
+                               {4{(swen[1:0] == 2'b10)}} & 4'b1100
+                              );
+assign swl_sel = {4{op_swl}}& ({4{(swen[1:0] == 2'b00)}} & 4'b0001 |
+                               {4{(swen[1:0] == 2'b01)}} & 4'b0011 |
+                               {4{(swen[1:0] == 2'b10)}} & 4'b0111 |
+                               {4{(swen[1:0] == 2'b11)}} & 4'b1111
+                                );
+assign swr_sel = {4{op_swr}}& ({4{(swen[1:0] == 2'b00)}} & 4'b1111 |
+                               {4{(swen[1:0] == 2'b01)}} & 4'b1110 |
+                               {4{(swen[1:0] == 2'b10)}} & 4'b1100 |
+                               {4{(swen[1:0] == 2'b11)}} & 4'b1000
+                                );
+assign store_sel = sw_sel | sb_sel | sh_sel | swl_sel | swr_sel;
+
+
+//store data
+assign sw_wdata  = {32{op_sw}}  & es_v3;
+
+assign sb_wdata  = {32{op_sb}}  & {4{es_v3[7:0]}};
+
+assign sh_wdata  = {32{op_sh}}  & {2{es_v3[15:0]}};
+
+assign swl_wdata = {32{op_swl}} & ({32{(swen[1:0] == 2'b00)}} & {24'b0,es_v3[31:24]} |
+                                   {32{(swen[1:0] == 2'b01)}} & {16'b0,es_v3[31:16]} |
+                                   {32{(swen[1:0] == 2'b10)}} & {8'h0 ,es_v3[31: 8]} |
+                                   {32{(swen[1:0] == 2'b11)}} & {      es_v3[31: 0]}
+                                  );
+assign swr_wdata = {32{op_swr}} & ({32{(swen[1:0] == 2'b00)}} & {es_v3             } |
+                                   {32{(swen[1:0] == 2'b01)}} & {es_v3[23: 0],8'b0 } |
+                                   {32{(swen[1:0] == 2'b10)}} & {es_v3[15: 0],16'b0} |
+                                   {32{(swen[1:0] == 2'b11)}} & {es_v3[7 : 0],24'b0}
+                                  );
+assign store_wdata = sw_wdata | sb_wdata | sh_wdata | swl_wdata | swr_wdata;
 assign fix_res = {32{addsub_op}} & adder_res 
                | {32{op_slt   }} & {31'h0,adder_lt}
                | {32{op_sltu  }} & {31'h0,adder_ltu}
@@ -431,15 +505,17 @@ assign fix_res = {32{addsub_op}} & adder_res
                | {32{op_sra   }} & shft0_r_res
                | {32{link_op  }} & adder_res
                | {32{op_mfhi  }} & hi_r
-               | {32{op_mflo  }} & lo_r;
+               | {32{op_mflo  }} & lo_r
+               | {32{op_lwl   }} & es_v3
+               | {32{op_lwr   }} & es_v3;
 
 
 
 //L / S
 assign data_sram_en    = es_valid_r && (store_op || load_op);
-assign data_sram_wen   = (es_valid_r && store_op) ? 4'hf : 4'h0;
+assign data_sram_wen   = store_sel;
 assign data_sram_addr  = adder_res;
-assign data_sram_wdata = es_v3;
+assign data_sram_wdata = store_wdata;
 
 
 
@@ -483,6 +559,8 @@ end
 //OUTPUT
 assign rs_valid   = es_to_ms_valid;
 assign rs_is_load = load_op;
+assign rs_op      = es_op;
+assign rs_sel     = load_sel;
 assign rs_dest    = es_dest;
 assign rs_fixres  = fix_res;
 assign rs_pc      = es_pc;
