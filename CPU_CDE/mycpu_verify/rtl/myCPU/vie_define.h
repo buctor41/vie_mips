@@ -14,11 +14,21 @@
 
 /****** internal op*******/
 `define VIE_OP_MOV      8'h05 //LUI
+`define VIE_OP_MFHI     8'h0c
+`define VIE_OP_MFLO     8'h0d
+`define VIE_OP_MTHI     8'h0e
+`define VIE_OP_MTLO     8'h0f
+
 `define VIE_OP_SLL      8'h11 //NOP,SLLV
 `define VIE_OP_SRL      8'h12
 `define VIE_OP_SRA      8'h13
-
+`define VIE_OP_MULT     8'h14
+`define VIE_OP_MULTU    8'h15
+`define VIE_OP_DIV      8'h16
+`define VIE_OP_DIVU     8'h17
+`define VIE_OP_ADD      8'h18 //ADDI
 `define VIE_OP_ADDU     8'h19 //ADDIU
+`define VIE_OP_SUB      8'h1a
 `define VIE_OP_SUBU     8'h1b 
 `define VIE_OP_AND      8'h1c
 `define VIE_OP_OR       8'h1d

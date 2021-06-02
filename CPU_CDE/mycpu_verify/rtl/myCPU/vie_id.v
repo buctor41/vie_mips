@@ -154,19 +154,51 @@ v_decoder_5_32 u3_d5to32(.in(sa[4:0]), .out(sa_d[31:0] ));
 v_decoder_6_64 u1_d6to64(.in(func[5:0]), .out(func_d[63:0] ));
 
 //cpu arithmetic operation
+wire inst_add               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h20];
+
+wire inst_addi              = op_d[6'h08];
+
 wire inst_addu              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h21];
+
 wire inst_addiu             = op_d[6'h09];
+
+wire inst_sub               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h22];
+
 wire inst_subu              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h23];
+
 wire inst_slt               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h2a];
+
+wire inst_slti              = op_d[6'h0a];
+
 wire inst_sltu              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h2b];
 
+wire inst_sltiu             = op_d[6'h0b];
+
+wire inst_mult              = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h18];
+
+wire inst_multu             = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h19];
+
+wire inst_div               = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h1a];
+
+wire inst_divu              = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h1b];
 
 //cpu logic operation
 wire inst_lui               = op_d[6'h0f]&rs_d[5'h00];
+
 wire inst_and               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h24];
+
+wire inst_andi              = op_d[6'h0c];
+
 wire inst_or                = op_d[6'h00]&sa_d[5'h00]&func_d[6'h25];
+
+wire inst_ori               = op_d[6'h0d];
+
 wire inst_xor               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h26];
+
+wire inst_xori              = op_d[6'h0e];
+
 wire inst_nor               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h27];
+
 
 
 //cpu branch and jump
@@ -178,13 +210,29 @@ wire inst_jr                = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&fu
 //cpu L/S 
 wire inst_lw                = op_d[6'h23];
 wire inst_sw                = op_d[6'h2b];
+
 //cpu move
+wire inst_mfhi              = op_d[6'h00]&rs_d[5'h00]&rt_d[5'h00]&sa_d[5'h00]&func_d[6'h10];
+
+wire inst_mflo              = op_d[6'h00]&rs_d[5'h00]&rt_d[5'h00]&sa_d[5'h00]&func_d[6'h12];
+
+wire inst_mthi              = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h11];
+
+wire inst_mtlo              = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h13];
+
 
 //cpu shift
 wire inst_sll               = op_d[6'h00]&rs_d[5'h00]&func_d[6'h00];
+
+wire inst_sllv              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h04];
+
 wire inst_srl               = op_d[6'h00]&rs_d[5'h00]&func_d[6'h02];
+
+wire inst_srlv              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h06];
+
 wire inst_sra               = op_d[6'h00]&rs_d[5'h00]&func_d[6'h03];
 
+wire inst_srav      = op_d[6'h00]&sa_d[5'h00]&func_d[6'h07];
 
 //internal aluop_code  generation
 assign vid_op[7] = inst_lw  | inst_sw;
@@ -194,49 +242,66 @@ assign vid_op[6] = 1'b0;
 
 
 assign vid_op[5] = inst_sltu | inst_slt  | inst_beq  | inst_bne   | inst_jal  |
-                   inst_jr;
+                   inst_jr   | inst_slti | inst_sltiu;
 
 assign vid_op[4] = inst_or   | inst_and  | inst_subu | inst_addiu | inst_addu |
                    inst_xor  | inst_nor  | inst_sll  | inst_srl   | inst_sra  |
-                   inst_lw   | inst_sw   | inst_beq  | inst_bne;
+                   inst_lw   | inst_sw   | inst_beq  | inst_bne   | inst_add  |
+                   inst_addi | inst_sub  | inst_andi | inst_ori   | inst_xori |
+                   inst_sllv | inst_srlv | inst_srav | inst_mult  | inst_multu|
+                   inst_div  | inst_divu;
 
 
 assign vid_op[3] = inst_or   | inst_and  | inst_subu | inst_addiu | inst_addu |
-                   inst_xor  | inst_nor  | inst_sw   | inst_jal   | inst_jr; 
+                   inst_xor  | inst_nor  | inst_sw   | inst_jal   | inst_jr   |
+                   inst_add  | inst_addi | inst_sub  | inst_andi  | inst_ori  |
+                   inst_xori | inst_mfhi | inst_mflo | inst_mthi  | inst_mtlo; 
 
 
 assign vid_op[2] = inst_or   | inst_and  | inst_sltu | inst_slt | inst_lui |
-                   inst_xor  | inst_nor  | inst_jal  | inst_jr;
+                   inst_xor  | inst_nor  | inst_jal  | inst_jr  | inst_slti|
+                   inst_sltiu| inst_andi | inst_ori  | inst_xori| inst_mult|
+                   inst_multu| inst_div  | inst_divu | inst_mfhi| inst_mflo|
+                   inst_mthi | inst_mtlo;
 
 assign vid_op[1] = inst_sltu | inst_slt | inst_subu | inst_xor  | inst_nor |
-                   inst_srl  | inst_sra | inst_lw   | inst_sw   | inst_jal;
+                   inst_srl  | inst_sra | inst_lw   | inst_sw   | inst_jal |
+                   inst_sub  | inst_slti| inst_sltiu| inst_xori | inst_srlv|
+                   inst_srav | inst_div | inst_divu | inst_mthi | inst_mtlo;
 
 
 assign vid_op[0] = inst_sltu | inst_subu | inst_addiu | inst_addu | inst_lui |
                    inst_or   | inst_nor  | inst_sll   | inst_sra  | inst_bne |
-                   inst_jr;
+                   inst_jr   | inst_sltiu| inst_ori   | inst_sllv | inst_srav|
+                   inst_multu| inst_divu | inst_mflo  | inst_mtlo;
 
 
 assign vid_v1_rs = inst_addu | inst_addiu | inst_subu | inst_slt | inst_sltu |
                    inst_and  | inst_or    | inst_xor  | inst_nor | inst_lw   |
-                   inst_sw   | inst_beq   | inst_bne;
+                   inst_sw   | inst_beq   | inst_bne  | inst_add | inst_addi |
+                   inst_sub  | inst_slti  | inst_sltiu| inst_andi| inst_ori  |
+                   inst_xori | inst_mult  | inst_multu| inst_div | inst_divu |
+                   inst_mthi | inst_mtlo;
     //cpu arithmetic
 
-assign vid_v1_rt = inst_sll | inst_srl | inst_sra;
+assign vid_v1_rt = inst_sll | inst_srl | inst_sra | inst_sllv | inst_srlv | inst_srav;
 
 assign vid_v1_imm_upper = inst_lui;
 
-assign vid_v2_rs = 1'b0;
+assign vid_v2_rs = inst_sllv | inst_srlv | inst_srav;
 
 
 assign vid_v2_rt = inst_addu | inst_subu | inst_slt | inst_sltu | inst_and |
-                   inst_or   | inst_xor  | inst_nor | inst_beq  | inst_bne;
+                   inst_or   | inst_xor  | inst_nor | inst_beq  | inst_bne |
+                   inst_add  | inst_sub  | inst_mult| inst_multu| inst_div |
+                   inst_divu;
 
 
-assign vid_v2_imm_sign_ex = inst_addiu | inst_lw | inst_sw;
+assign vid_v2_imm_sign_ex = inst_addiu | inst_lw | inst_sw | inst_addi | inst_slti |
+                            inst_sltiu;
 
 
-assign vid_v2_imm_zero_ex = 1'b0;
+assign vid_v2_imm_zero_ex = inst_andi | inst_ori | inst_xori;
 
 
 assign vid_v2_imm_sa      = inst_sll | inst_srl | inst_sra;
@@ -262,8 +327,8 @@ wire [31:0] rf_rvalue1;
 wire        rf_wvalid0;
 wire [ 4:0] rf_waddr0 ;
 wire [31:0] rf_wvalue0;
-wire        rf_fwd0;        //wb写回时可能发生数据相�??
-wire        rf_fwd1;        //wb写回时可能发生数据相�??
+wire        rf_fwd0;        //wb写回时可能发生数据相�???
+wire        rf_fwd1;        //wb写回时可能发生数据相�???
 
 wire        ld_fwd0;
 wire        ld_fwd1;
@@ -361,9 +426,11 @@ assign v3    = ((vid_v3_rs | vid_v3_rt) & ld_fwd1) ? 32'h0                      
 
 assign vid_dest_rd  = inst_addu | inst_subu | inst_slt | inst_sltu | inst_and |
                       inst_or   | inst_xor  | inst_nor | inst_sll  | inst_srl |
-                      inst_sra;
+                      inst_sra  | inst_add  | inst_sub | inst_sllv | inst_srlv|
+                      inst_srav | inst_mfhi | inst_mflo;
 
-assign vid_dest_rt  = inst_lui  | inst_addiu | inst_lw;  
+assign vid_dest_rt  = inst_lui  | inst_addiu | inst_lw | inst_addi | inst_slti | inst_sltiu |
+                      inst_andi | inst_ori   | inst_xori;  
 
 assign vid_dest_r31 = inst_jal;
 
@@ -413,7 +480,7 @@ assign br_taken = ((inst_beq &&  rs_eq_rt) ||
                                  inst_jal) && ds_valid_r;
 
 assign br_target = (inst_beq || inst_bne) ? (fs_pc + {{14{offset[15]}},offset[15:0],2'b00}) :
-                                (inst_jr) ? rf_rvalue1 :
+                                (inst_jr) ? v3 :
                                             {fs_pc[31:28],instr_index[25:0],2'b0};
 
 
