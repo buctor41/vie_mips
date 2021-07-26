@@ -900,7 +900,7 @@
     nop; \
     blez zero, 2000f; \
     op  s7 , ##__VA_ARGS__; \
-1000: ; \
+1000: ; \TEST_FT_ADEL
     b   inst_error; \
     nop;            \
 2000: ; \

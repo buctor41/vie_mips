@@ -27,16 +27,17 @@ output [`Vmstatus      -1:0] mstatus_o;
 
 
 
-wire        rs_valid        = rsbus_i[97:97];
-wire        rs_bd           = rsbus_i[96:96];
-wire [7 :9] rs_cp0_addr     = rsbus_i[95:88];
-wire        rs_exc          = rsbus_i[87:82];
-wire        rs_res_from_mem = rsbus_i[81:81];
-wire [7 :0] rs_op           = rsbus_i[80:73];
-wire [1 :0] rs_sel          = rsbus_i[72:71];
-wire [6 :0] rs_dest         = rsbus_i[70:64];
-wire [31:0] rs_fixres       = rsbus_i[63:32];
-wire [31:0] rs_pc           = rsbus_i[31: 0];
+wire        rs_valid        = rsbus_i[129:129];
+wire [31:0] rs_baddr        = rsbus_i[128: 97];
+wire        rs_bd           = rsbus_i[96 : 96];
+wire [7 :9] rs_cp0_addr     = rsbus_i[95 : 88];
+wire        rs_exc          = rsbus_i[87 : 82];
+wire        rs_res_from_mem = rsbus_i[81 : 81];
+wire [7 :0] rs_op           = rsbus_i[80 : 73];
+wire [1 :0] rs_sel          = rsbus_i[72 : 71];
+wire [6 :0] rs_dest         = rsbus_i[70 : 64];
+wire [31:0] rs_fixres       = rsbus_i[63 : 32];
+wire [31:0] rs_pc           = rsbus_i[31 : 0];
 
 wire [31:0] mem_data        = ifc_data_i;
 
@@ -45,6 +46,7 @@ wire        flush_taken  = flushbus_i[32:32];
 wire [31:0] flush_target = flushbus_i[31: 0];
 
 wire        final_valid   ;
+wire [31:0] final_baddr   ;
 wire        final_bd      ;
 wire [7 :0] final_op      ;
 wire [7 :0] final_cp0_addr;
@@ -53,14 +55,15 @@ wire [6 :0] final_dest    ;
 wire [31:0] final_pc      ;
 wire [31:0] final_res     ;
 
-assign msbus_o[94:94] = final_valid;
-assign msbus_o[93:93] = final_bd   ;
-assign msbus_o[92:85] = final_op   ;
-assign msbus_o[84:77] = final_cp0_addr;
-assign msbus_o[76:71] = final_exc  ;
-assign msbus_o[70:64] = final_dest ;
-assign msbus_o[63:32] = final_pc   ;
-assign msbus_o[31: 0] = final_res  ;
+assign msbus_o[126:126] = final_valid;
+assign msbus_o[125: 94] = final_baddr;
+assign msbus_o[93 : 93] = final_bd   ;
+assign msbus_o[92 : 85] = final_op   ;
+assign msbus_o[84 : 77] = final_cp0_addr;
+assign msbus_o[76 : 71] = final_exc  ;
+assign msbus_o[70 : 64] = final_dest ;
+assign msbus_o[63 : 32] = final_pc   ;
+assign msbus_o[31 :  0] = final_res  ;
 
 
 wire   state_kernel   = wstate_i[1:1];
@@ -78,6 +81,7 @@ assign mstate_o[0:0]  = cur_exc;
 reg [`Vrsbus - 1:0] rsbus_r;
 
 wire        ms_valid;
+wire [31:0] ms_baddr;
 wire        ms_bd;
 wire [7 :0] ms_cp0_addr;
 wire [5 :0] ms_exc;
@@ -89,6 +93,7 @@ wire [31:0] ms_fixres;
 wire [31:0] ms_pc;
 
 assign {ms_valid,
+        ms_baddr,
         ms_bd,
         ms_cp0_addr,
         ms_exc,
@@ -102,6 +107,7 @@ assign {ms_valid,
 
 //exc
 wire exc;
+wire op_eret    = ms_op == `VIE_OP_ERET;
 // wire [31:0] data;
 
 //control signals
@@ -182,8 +188,9 @@ assign load_res = lw_res | lb_res | lbu_res | lh_res | lhu_res | lwl_res | lwr_r
 
 
 //exc
-assign exc = ms_valid_r & (ms_exc[5] | ms_exc[4] | ms_exc[3] | ms_exc[2] | ms_exc[1] | ms_exc[0] | state_exc);
+assign exc = ms_valid_r & (ms_exc[5] | ms_exc[4] | ms_exc[3] | ms_exc[2] | ms_exc[1] | ms_exc[0] | state_exc | op_eret);
 assign final_valid    = ms_to_ws_valid;
+assign final_baddr    = ms_baddr      ;
 assign final_bd       = ms_bd         ;
 assign final_op       = ms_op         ;
 assign final_cp0_addr = ms_cp0_addr   ;

@@ -19,14 +19,15 @@ output [`Vdebugbus       -1:0] debugbus_o;
 output [`Vflushbus       -1:0] flushbus_o;
 output [`Vwstate         -1:0] wstate_o  ; 
 
-wire        ms_valid    = msbus_i[94:94];
-wire        ms_bd       = msbus_i[93:93];
-wire [7 :0] ms_op       = msbus_i[92:85];
-wire [7 :0] ms_cp0_addr = msbus_i[84:77];
-wire [5 :0] ms_exc      = msbus_i[76:71];
-wire [6 :0] ms_dest     = msbus_i[70:64];
-wire [31:0] ms_pc       = msbus_i[63:32];
-wire [31:0] ms_res      = msbus_i[31: 0];
+wire        ms_valid    = msbus_i[126:126];
+wire [31:0] ms_baddr    = msbus_i[125: 94];
+wire        ms_bd       = msbus_i[93 : 93];
+wire [7 :0] ms_op       = msbus_i[92 : 85];
+wire [7 :0] ms_cp0_addr = msbus_i[84 : 77];
+wire [5 :0] ms_exc      = msbus_i[76 : 71];
+wire [6 :0] ms_dest     = msbus_i[70 : 64];
+wire [31:0] ms_pc       = msbus_i[63 : 32];
+wire [31:0] ms_res      = msbus_i[31 :  0];
 
 wire        rf_we;
 wire [4 :0] rf_waddr;
@@ -62,6 +63,7 @@ assign wstate_o[0:0]     = state_exc;
 
 reg  [`Vmsbus    -1:0] msbus_r;
 wire        ws_valid;
+wire [31:0] ws_baddr;
 wire        ws_bd   ;
 wire [7 :0] ws_op   ;
 wire [7 :0] ws_cp0_addr;
@@ -71,6 +73,7 @@ wire [31:0] ws_pc;
 wire [31:0] ws_res;
 
 assign{ws_valid,
+       ws_baddr,
        ws_bd,
        ws_op,
        ws_cp0_addr,
@@ -99,6 +102,13 @@ wire [31:0] cp0_wr_value;
 wire [31:0] cp0_rd_value;
 
 //Cp0 Register
+
+//BadVAddr      reg: 8, sel: 0
+reg  [31:0]  c0_badvaddr;
+
+wire [31:0]  badvaddr_value;
+assign badvaddr_value = c0_badvaddr;
+
 
 //Count         reg: 9, sel: 0
 reg  [31:0]  c0_count;
@@ -130,7 +140,7 @@ reg  [7:0]    c0_cause_ip;
 reg  [4:0]    c0_cause_excode;
 
 wire [31:0]   cause_value;
-assign cause_value  = {c0_cause_bd, c0_cause_ti    , 15'b0,c0_cause_ip,
+assign cause_value  = {c0_cause_bd, c0_cause_ti    , 14'b0,c0_cause_ip,
                        1'b0       , c0_cause_excode, 2'b0};
 
 //EPC           reg: 14, sel: 0
@@ -204,7 +214,7 @@ assign exc_ri   = ms_exc[0];
 assign exc_int  = has_int;
 assign bd       = ms_bd;
 assign pc       = ms_pc;
-assign exc = ws_valid_r & (exc_adel | exc_ades | exc_ov | exc_sys | exc_bp | exc_ri | exc_int | 0);
+assign exc      = ms_valid & (exc_adel | exc_ades | exc_ov | exc_sys | exc_bp | exc_ri | exc_int);
 assign exc_code = exc_int  ? 5'b00000 :
                   exc_adel ? 5'b00100 :
                   exc_ades ? 5'b00101 :
@@ -232,14 +242,19 @@ assign cp0_waddr    = op_mtc0 ? cp0_addr : 8'h0;
 assign cp0_wr_value = ms_res[31:0];
 
 assign cp0_rd_value = 
-            {32{ws_cp0_addr==`CR_STATUS }}&status_value 
-          | {32{ws_cp0_addr==`CR_CAUSE  }}&cause_value
-          | {32{ws_cp0_addr==`CR_EPC    }}&epc_value
-          | {32{ws_cp0_addr==`CR_COUNT  }}&count_value
-          | {32{ws_cp0_addr==`CR_COMPARE}}&compare_value
+            {32{ws_cp0_addr==`CR_STATUS  }}&status_value 
+          | {32{ws_cp0_addr==`CR_CAUSE   }}&cause_value
+          | {32{ws_cp0_addr==`CR_EPC     }}&epc_value
+          | {32{ws_cp0_addr==`CR_COUNT   }}&count_value
+          | {32{ws_cp0_addr==`CR_COMPARE }}&compare_value
+          | {32{ws_cp0_addr==`CR_BADVADDR}}&badvaddr_value
           ;
 
 always @(posedge clock) begin
+    //BadVaddr
+    if(exc && (exc_code==5'b00100 || exc_code==5'b00101)&&~flush_happen)
+        c0_badvaddr <= ms_baddr;
+
     //Count
     if(reset) tick <= 1'b0;
     else      tick <= ~tick;
@@ -279,7 +294,7 @@ always @(posedge clock) begin
     if(reset)
         c0_status_ie <= 1'b0;
     else if(cp0_wen && cp0_waddr==`CR_STATUS)
-        c0_status_exl <= cp0_wr_value[0];
+        c0_status_ie <= cp0_wr_value[0];
 
     //Cause
     //BD
@@ -308,12 +323,12 @@ always @(posedge clock) begin
     if(reset)
         c0_cause_ip[1:0] <= 2'b0;
     else if(cp0_wen && cp0_waddr==`CR_CAUSE)
-        c0_cause_ip[1:0] <= cp0_wr_value;
+        c0_cause_ip[1:0] <= cp0_wr_value[9:8];
     
     //EXcode
     if(reset)
         c0_cause_excode <= 5'b0;
-    else if(exc)
+    else if(exc && ~flush_happen)
         c0_cause_excode <= exc_code;
 
     //EPC

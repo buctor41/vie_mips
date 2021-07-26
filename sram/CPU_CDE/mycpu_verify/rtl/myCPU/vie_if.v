@@ -33,13 +33,15 @@ wire [31:0] flush_target = flushbus_i[31: 0];
 
 reg  [31:0] fs_pc_r;
 wire [31:0] fs_inst;
-wire [ 5:0] fs_exc    ;
+wire [ 5:0] fs_exc ;
+wire [31:0] fs_baddr;
 wire        fs_to_ds_valid;
 
-assign fsbus_o[70:70] = fs_to_ds_valid;
-assign fsbus_o[69:64] = fs_exc; 
-assign fsbus_o[63:32] = fs_pc_r;
-assign fsbus_o[31: 0] = fs_inst;
+assign fsbus_o[102:102] = fs_to_ds_valid;
+assign fsbus_o[101: 70] = fs_baddr      ;
+assign fsbus_o[69 :64] = fs_exc; 
+assign fsbus_o[63 :32] = fs_pc_r;
+assign fsbus_o[31 : 0] = fs_inst;
 
 assign fs_inst        = ifc_inst_i;
 
@@ -97,8 +99,9 @@ always @(posedge clock) begin
     end
 end
 
-assign exc_adel         = to_fs_valid && fs_allowin && (next_pc[1:0]!=2'b00);
+assign exc_adel         = to_fs_valid && fs_allowin && (fs_pc_r[1:0]!=2'b00);
 assign fs_exc           = {exc_adel,5'b00};
+assign fs_baddr         = exc_adel ? fs_pc_r[31:0] : 32'h0;
 
 assign inst_sram_en     = to_fs_valid && fs_allowin;
 assign inst_sram_wen   = 4'h0;

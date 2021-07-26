@@ -2,6 +2,7 @@
 module mycpu_top(
     input         clk,
     input         resetn,
+    input  [ 5:0] ext_int,
     // inst sram interface
     output        inst_sram_en,
     output [ 3:0] inst_sram_wen,
@@ -30,7 +31,7 @@ wire         ws_allowin;
 
 wire [`Vbrbus       -1:0] brbus;
 wire [`Vfsbus       -1:0] fsbus;
-wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�??
+wire [`Vfromifcbus  -1:0] ifc_inst;     //取到的指�???
 wire [`Vtoifcbus    -1:0] inst_ifc;     //
 wire [`Vfromifcbus  -1:0] ifc_data;
 wire [`Vtoifcbus    -1:0] data_ifc;
@@ -38,7 +39,13 @@ wire [`Vissuebus    -1:0] issuebus;
 wire [`Vwsbus       -1:0] wsbus   ;
 wire [`Vrsbus       -1:0] rsbus   ;
 wire [`Vmsbus       -1:0] msbus   ;
-wire [`Vdebugbus    -1:0] debugbus ;
+wire [`Vdebugbus    -1:0] debugbus;
+wire [`Vflushbus    -1:0] flushbus;
+wire [`Vrstatus     -1:0] rstatus ;
+wire [`Vmstatus     -1:0] mstatus ;
+wire [`Vwstate      -1:0] wstate  ;
+wire [`Vmstate      -1:0] mstate  ;
+wire [`Vestate      -1:0] estate  ;
 
 assign        ifc_inst = inst_sram_rdata;
 assign    inst_sram_en = inst_ifc[68:68];
@@ -61,26 +68,30 @@ assign debug_wb_rf_wdata = debugbus[31: 0];
 
 vie_if_stage  u0_if_stage(
     .clock(clk)    , .reset(reset)        , .ds_allowin(ds_allowin), .brbus_i(brbus),
-    .fsbus_o(fsbus), .ifc_inst_i(ifc_inst), .inst_ifc_o(inst_ifc)
+    .fsbus_o(fsbus), .ifc_inst_i(ifc_inst), .inst_ifc_o(inst_ifc)  , .flushbus_i(flushbus)
 );
 
 vie_id_stage  u1_id_stage(
     .clock(clk)    , .reset(reset)        , .es_allowin(es_allowin), .fsbus_i(fsbus),
-    .brbus_o(brbus), .issuebus_o(issuebus), .ds_allowin(ds_allowin), .wsbus_i(wsbus)
+    .brbus_o(brbus), .issuebus_o(issuebus), .ds_allowin(ds_allowin), .wsbus_i(wsbus),
+    .rstatus_i(rstatus), .mstatus_i(mstatus), .flushbus_i(flushbus), .estate_i(estate)
 );
 
 vie_exe_stage u2_ex_stage(
-    .clock(clk)    , .reset(reset)        , .es_allowin(es_allowin), .issuebus_i(issuebus),
-    .rsbus_o(rsbus), .data_ifc_o(data_ifc), .ms_allowin(ms_allowin)
+    .clock(clk)          , .reset(reset)        , .es_allowin(es_allowin), .issuebus_i(issuebus),
+    .rsbus_o(rsbus)      , .data_ifc_o(data_ifc), .ms_allowin(ms_allowin), .rstatus_o(rstatus) ,
+    .flushbus_i(flushbus), .estate_o  (estate)  , .mstate_i(mstate)
 );
 
 vie_mem_stage u3_mem_stage(
-    .clock(clk)    , .reset(reset)        , .ws_allowin(ws_allowin), .rsbus_i(rsbus),
-    .msbus_o(msbus), .ifc_data_i(ifc_data), .ms_allowin(ms_allowin)
+    .clock(clk)          , .reset(reset)        , .ws_allowin(ws_allowin), .rsbus_i(rsbus),
+    .msbus_o(msbus)      , .ifc_data_i(ifc_data), .ms_allowin(ms_allowin), .mstatus_o(mstatus),
+    .flushbus_i(flushbus), .wstate_i(wstate)    , .mstate_o(mstate)
 );
 
 vie_wb_stage  u4_wb_stage(
-    .clock(clk)    , .reset(reset)        , .ws_allowin(ws_allowin), .msbus_i(msbus),
-    .wsbus_o(wsbus), .debugbus_o(debugbus)
+    .clock(clk)    , .reset(reset)        , .ws_allowin(ws_allowin), .msbus_i(msbus)      ,
+    .wsbus_o(wsbus), .debugbus_o(debugbus), .ext_int_in(ext_int)   , .flushbus_o(flushbus),
+    .wstate_o(wstate)
 );
 endmodule

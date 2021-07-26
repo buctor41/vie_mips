@@ -27,7 +27,8 @@ output [`Vrstatus        -1:0] rstatus_o ;
 output [`Vestate         -1:0] estate_o  ;
 
 
-wire        issue_valid = issuebus_i[153:153];
+wire        issue_valid = issuebus_i[185:185];
+wire [31:0] issue_baddr = issuebus_i[184:153];
 wire        issue_bd    = issuebus_i[152:152];
 wire [ 5:0] issue_exc   = issuebus_i[151:146];
 wire [31:0]    issue_pc = issuebus_i[145:114];
@@ -58,6 +59,7 @@ assign      estate_o[0:0] = cur_exl   ;
 
 //rsbus unknown
 wire        rs_valid;
+wire [31:0] rs_baddr;
 wire        rs_bd;
 wire [7 :0] rs_cp0_addr;
 wire [5 :0] rs_exc;
@@ -68,16 +70,17 @@ wire [6 :0] rs_dest;
 wire [31:0] rs_fixres;
 wire [31:0] rs_pc;
 
-assign rsbus_o[97:97] = rs_valid;
-assign rsbus_o[96:96] = rs_bd;
-assign rsbus_o[95:88] = rs_cp0_addr;
-assign rsbus_o[87:82] = rs_exc;
-assign rsbus_o[81:81] = rs_is_load;
-assign rsbus_o[80:73] = rs_op;
-assign rsbus_o[72:71] = rs_sel;
-assign rsbus_o[70:64] = rs_dest;
-assign rsbus_o[63:32] = rs_fixres;
-assign rsbus_o[31: 0] = rs_pc;
+assign rsbus_o[129:129]= rs_valid;
+assign rsbus_o[128: 97] = rs_baddr;
+assign rsbus_o[96 : 96] = rs_bd;
+assign rsbus_o[95 : 88] = rs_cp0_addr;
+assign rsbus_o[87 : 82] = rs_exc;
+assign rsbus_o[81 : 81] = rs_is_load;
+assign rsbus_o[80 : 73] = rs_op;
+assign rsbus_o[72 : 71] = rs_sel;
+assign rsbus_o[70 : 64] = rs_dest;
+assign rsbus_o[63 : 32] = rs_fixres;
+assign rsbus_o[31 :  0] = rs_pc;
 
 wire        data_sram_en   ;
 wire [3 :0] data_sram_wen  ;
@@ -99,6 +102,7 @@ wire es_to_ms_valid;
 reg [`Vissuebus - 1:0] issue_r;       
 
 wire        es_valid;
+wire [31:0] es_baddr;
 wire        es_bd;
 wire [ 5:0] es_exc;
 wire [31:0] es_pc;
@@ -112,6 +116,7 @@ wire        es_v3_en;
 wire [31:0] es_v3;
 
 assign {es_valid,
+        es_baddr,
         es_bd,
         es_exc,
         es_pc,
@@ -202,7 +207,15 @@ wire exc;
 
 wire inc;   //instruction need cancel
 wire exc_ov;
+wire exc_adel;
+wire exc_ades;
+wire [5:0]  cur_exc;
 
+wire        adel_happen;
+wire        ades_happen;
+wire [31:0] baddr;
+wire [31:0] ades_baddr;
+wire [31:0] adel_baddr;
 
 //EXECUTION
 wire op_add     = es_op == `VIE_OP_ADD;
@@ -259,6 +272,8 @@ wire op_bgezal  = es_op == `VIE_OP_BGEZAL;
 
 wire op_mtc0    = es_op == `VIE_OP_MTC0;
 wire op_mfc0    = es_op == `VIE_OP_MFC0;
+
+wire op_eret    = es_op == `VIE_OP_ERET;
 
 wire mult_op    = op_mult | op_multu;
 
@@ -317,8 +332,8 @@ assign adder_ge  = ~adder_lt;
 
 assign adder_geu = adder_cout;
 
-assign adder_ov  = (~es_v1[31]&~es_v2[31]& adder_res[31] | es_v1[31]& es_v2[31]&~adder_res[31]) & add_op |
-                   (~es_v1[31]& es_v2[31]& adder_res[31] | es_v1[31]&~es_v2[31]&~adder_res[31]) & sub_op;
+assign adder_ov  = (~es_v1[31]&~es_v2[31]& adder_res[31] | es_v1[31]& es_v2[31]&~adder_res[31]) & op_add |
+                   (~es_v1[31]& es_v2[31]& adder_res[31] | es_v1[31]&~es_v2[31]&~adder_res[31]) & op_sub;
 //还未考虑溢出
 
 //Bitwise logic
@@ -540,21 +555,35 @@ assign cp0_addr =  {8{op_mtc0}} & es_v2[7:0]
 //ov
 assign exc_ov    = es_valid_r && adder_ov;
 
-assign es_exc[3] = es_exc[3]==1'b0;
+
 
 
 //ades
-assign es_exc[4] = (store_wd   && es_valid_r && (adder_res[1:0] != 2'b00)) | 
-                   (store_hfwd && es_valid_r && (adder_res[0:0] != 1'b0 ));
+assign exc_ades     = (store_wd   && es_valid_r && (adder_res[1:0] != 2'b00)) | 
+                      (store_hfwd && es_valid_r && (adder_res[0:0] != 1'b0 ));
+//adel
+assign exc_adel     = (load_wd   && es_valid_r && (adder_res[1:0] != 2'b00)) |
+                      (load_hfwd && es_valid_r && (adder_res[0:0] != 1'b00));
 
-assign es_exc[5] = (load_wd   && es_valid_r && (adder_res[1:0] != 2'b00)) |
-                   (load_hfwd && es_valid_r && (adder_res[0:0] != 1'b00));
+assign cur_exc[5]   = es_exc[5] == 1'b1 ? es_exc[5] : exc_adel; 
+assign cur_exc[4]   = es_exc[4] == 1'b1 ? es_exc[4] : exc_ades;
+assign cur_exc[3]   = exc_ov;
+assign cur_exc[2:0] = es_exc[2:0]; 
 
 
-
-assign exc      = es_valid_r & (es_exc[5] | es_exc[4] | es_exc[3] | es_exc[2] | es_exc[1] | es_exc[0] | state_exc);
+assign exc      = es_valid_r & (cur_exc[5] | cur_exc[4] | cur_exc[3] | cur_exc[2] | cur_exc[1] | cur_exc[0] | state_exc | op_eret);
 
 assign inc      = exc && (~state_kernel) && es_valid_r;
+
+
+//adel ades
+assign adel_happen = exc_adel & inc;
+assign ades_happen = exc_ades & inc;
+
+assign adel_baddr  = adder_res[31:0];
+assign ades_baddr  = adder_res[31:0];
+
+assign baddr       = adel_happen ? adel_baddr : ades_happen ? ades_baddr : es_baddr;
 
 //store data
 assign sw_wdata  = {32{op_sw}}  & es_v3;
@@ -595,7 +624,7 @@ assign fix_res = {32{addsub_op}} & adder_res
 
 
 //L / S
-assign data_sram_en    = es_valid_r && (store_op || load_op) && (!inc);
+assign data_sram_en    = es_valid_r && (store_op || load_op) && (!inc) && (~flush_taken);
 assign data_sram_wen   = store_sel;
 assign data_sram_addr  = adder_res;
 assign data_sram_wdata = store_wdata;
@@ -642,9 +671,10 @@ end
 
 //OUTPUT
 assign rs_valid   = es_to_ms_valid;
+assign rs_baddr   = baddr;
 assign rs_bd      = es_bd;
 assign rs_cp0_addr= cp0_addr;
-assign rs_exc     = es_exc;
+assign rs_exc     = cur_exc;
 assign rs_is_load = load_op;
 assign rs_op      = es_op;
 assign rs_sel     = load_sel;

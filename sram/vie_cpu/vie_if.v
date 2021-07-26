@@ -1,5 +1,3 @@
-`include "vie_define.h"
-
 module vie_if_stage(
     clock,
     reset,
@@ -9,7 +7,8 @@ module vie_if_stage(
     fsbus_o,
 
     ifc_inst_i,
-    inst_ifc_o
+    inst_ifc_o,
+    flushbus_i
 );
 input                               clock;
 input                               reset;
@@ -21,17 +20,24 @@ output [`Vfsbus               -1:0] fsbus_o;
 input  [`Vfromifcbus          -1:0] ifc_inst_i;
 output [`Vtoifcbus            -1:0] inst_ifc_o;
 
+input  [`Vflushbus            -1:0] flushbus_i;
 //wire        br_taken  = brbus_i[64:64];
 //wire [31:0] br_base   = brbus_i[63:32];
 //wire [31:0] br_offset = brbus_i[31: 0];       
 wire        br_taken  = brbus_i[32:32];
 wire [31:0] br_target = brbus_i[31: 0];
 
+
+wire        flush_taken  = flushbus_i[32:32];
+wire [31:0] flush_target = flushbus_i[31: 0];
+
 reg  [31:0] fs_pc_r;
 wire [31:0] fs_inst;
+wire [ 5:0] fs_exc    ;
 wire        fs_to_ds_valid;
 
-assign fsbus_o[64:64] = fs_to_ds_valid;
+assign fsbus_o[70:70] = fs_to_ds_valid;
+assign fsbus_o[69:64] = fs_exc; 
 assign fsbus_o[63:32] = fs_pc_r;
 assign fsbus_o[31: 0] = fs_inst;
 
@@ -55,13 +61,19 @@ wire fs_cango;
 wire fs_allowin;
 wire to_fs_valid;
 
-wire [31:0] seq_pc;
+wire exc_adel;
+wire [31:0] seq_pc ;
 wire [31:0] next_pc;
+
+
+
+
 
 //pre-if
 assign to_fs_valid  = ~reset;
 assign seq_pc       = fs_pc_r + 3'h4;
-assign next_pc      = br_taken ? br_target : seq_pc;
+assign next_pc      = flush_taken ? flush_target :
+                      br_taken    ? br_target    : seq_pc;
 //assign pc_adder_a   = br_taken ? br_base   : fs_pc_r;
 //assign pc_adder_b   = br_taken ? br_offset : 32'h4  ;
 //assign pc_adder_res = pc_adder_a + pc_adder_b;
@@ -84,6 +96,9 @@ always @(posedge clock) begin
         fs_pc_r <= next_pc;
     end
 end
+
+assign exc_adel         = to_fs_valid && fs_allowin && (next_pc[1:0]!=2'b00);
+assign fs_exc           = {exc_adel,5'b00};
 
 assign inst_sram_en     = to_fs_valid && fs_allowin;
 assign inst_sram_wen   = 4'h0;

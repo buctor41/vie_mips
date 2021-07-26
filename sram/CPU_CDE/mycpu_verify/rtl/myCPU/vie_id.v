@@ -31,10 +31,11 @@ output                     ds_allowin;
 output [`Vissuebus   -1:0] issuebus_o;
 input  [`Vestate     -1:0] estate_i  ;
 
-wire fs_to_ds_valid = fsbus_i[70:70];
-wire [31:0] fs_exc  = fsbus_i[69:64];
-wire [31:0] fs_pc   = fsbus_i[63:32];
-wire [31:0] fs_inst = fsbus_i[31: 0];
+wire fs_to_ds_valid = fsbus_i[102:102];
+wire [31:0] fs_baddr= fsbus_i[101: 70];
+wire [5 :0] fs_exc  = fsbus_i[69 : 64];
+wire [31:0] fs_pc   = fsbus_i[63 : 32];
+wire [31:0] fs_inst = fsbus_i[31 :  0];
 
 wire        rf_we    = wsbus_i[37:37];
 wire [ 4:0] rf_waddr = wsbus_i[36:32]; 
@@ -69,6 +70,7 @@ wire        state_kernel = estate_i[1:1];
 wire        state_exc    = estate_i[0:0];
 
 wire        issue_valid;
+wire [31:0] issue_baddr;
 wire        issue_bd   ;
 wire [ 5:0] issue_exc  ;
 wire [31:0] issue_pc   ;
@@ -81,7 +83,8 @@ wire [31:0] issue_v2   ;
 wire        issue_v3_en;
 wire [31:0] issue_v3   ;
 
-assign issuebus_o[153:153] = issue_valid;
+assign issuebus_o[185:185] = issue_valid;
+assign issuebus_o[184:153] = issue_baddr;
 assign issuebus_o[152:152] = issue_bd   ;
 assign issuebus_o[151:146] = issue_exc  ;
 assign issuebus_o[145:114] = issue_pc   ;
@@ -105,6 +108,7 @@ wire ds_to_es_valid;
 reg  [31:0] ds_pc_r;
 reg  [31:0] ds_inst_r;
 reg  [ 5:0] ds_exc_r;
+reg  [31:0] ds_baddr_r;
 //internal logic and signals
 wire        vid_valid         ;
 wire [31:0] vid_pc            ;
@@ -115,6 +119,8 @@ wire        vid_bd            ;
 wire [ 5:0] vid_exc           ;
 wire        vid_ex_sys        ;
 wire        vid_ex_bp         ;
+wire        vid_ex_ri         ;
+wire [31:0] vid_baddr         ;
 
 assign vid_valid = ds_to_es_valid;
 assign vid_pc    = ds_pc_r;
@@ -185,6 +191,7 @@ reg bd;
 wire exc;
 wire inc;
 
+wire inst_cpu;
 //cpu arithmetic operation
 wire inst_add               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h20];
 
@@ -214,6 +221,9 @@ wire inst_div               = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h1a];
 
 wire inst_divu              = op_d[6'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h1b];
 
+wire inst_ae                = inst_add   | inst_addi | inst_addu | inst_addiu | inst_sub  |
+                              inst_subu  | inst_slt  | inst_slti | inst_sltiu | inst_mult |
+                              inst_multu | inst_div  | inst_divu | inst_sltu  ;
 //cpu logic operation
 wire inst_lui               = op_d[6'h0f]&rs_d[5'h00];
 
@@ -231,6 +241,8 @@ wire inst_xori              = op_d[6'h0e];
 
 wire inst_nor               = op_d[6'h00]&sa_d[5'h00]&func_d[6'h27];
 
+wire inst_logic             = inst_lui | inst_and  | inst_andi | inst_or | inst_ori |
+                              inst_xor | inst_xori | inst_nor  ;
 
 
 //cpu branch and jump
@@ -259,6 +271,12 @@ wire inst_jr                = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&fu
 
 wire inst_jalr              = op_d[6'h00]&rt_d[5'h00]&sa_d[5'h00]&func_d[6'h09];
 
+
+wire inst_br                = inst_beq  | inst_bne  | inst_bgezal | inst_bltzal 
+                            | inst_bgez | inst_bgtz | inst_blez   | inst_bltz
+                            | inst_j    | inst_jal  | inst_jalr   | inst_jr 
+                            ;
+
 //cpu L/S 
 wire inst_lb                = op_d[6'h20];
 
@@ -284,6 +302,10 @@ wire inst_sw                = op_d[6'h2b];
 
 wire inst_swr               = op_d[6'h2e];
 
+wire inst_io                = inst_lb  | inst_lh | inst_lwl | inst_lbu | inst_lhu |
+                              inst_lwr | inst_sb | inst_sh  | inst_swl | inst_sw  |
+                              inst_swr | inst_lw ;
+
 //cpu move
 wire inst_mfhi              = op_d[6'h00]&rs_d[5'h00]&rt_d[5'h00]&sa_d[5'h00]&func_d[6'h10];
 
@@ -293,6 +315,7 @@ wire inst_mthi              = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&fu
 
 wire inst_mtlo              = op_d[6'h00]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h13];
 
+wire inst_hl                 = inst_mfhi | inst_mflo | inst_mthi | inst_mtlo;
 
 //cpu shift
 wire inst_sll               = op_d[6'h00]&rs_d[5'h00]&func_d[6'h00];
@@ -307,12 +330,14 @@ wire inst_sra               = op_d[6'h00]&rs_d[5'h00]&func_d[6'h03];
 
 wire inst_srav              = op_d[6'h00]&sa_d[5'h00]&func_d[6'h07];
 
-
+wire inst_shift             = inst_sll | inst_sllv | inst_srl | inst_srlv | inst_sra | inst_srav;
 
 //cpu trap
 wire inst_break             = op_d[6'h00]&func_d[6'h0d];
 
 wire inst_syscall           = op_d[6'h00]&func_d[6'h0c];
+
+wire inst_trap              = inst_break | inst_syscall;
 
 //Privileged Instructions
 wire inst_eret              = op_d[6'h10]&rs_d[5'h10]&rt_d[5'h00]&rd_d[5'h00]&sa_d[5'h00]&func_d[6'h18];
@@ -321,12 +346,10 @@ wire inst_mfc0              = op_d[6'h10]&rs_d[5'h00]&sa_d[5'h00]&(func[5:3]==3'
 
 wire inst_mtc0              = op_d[6'h10]&rs_d[5'h04]&sa_d[5'h0]&&(func[5:3]==3'b0);
 
+wire inst_pri               = inst_eret | inst_mfc0 | inst_mtc0;
 
 //branch inst
-wire inst_br                = inst_beq  | inst_bne  | inst_bgezal | inst_bltzal 
-                            | inst_bgez | inst_bgtz | inst_blez   | inst_bltz
-                            | inst_j    | inst_jal  | inst_jalr   | inst_jr 
-                            ;
+
 
 //internal aluop_code  generation
 assign vid_op[7] = inst_lw   | inst_sw   | inst_lb | inst_lbu | inst_lh | inst_lhu |
@@ -394,7 +417,7 @@ assign vid_v1_rs = inst_addu | inst_addiu | inst_subu  | inst_slt | inst_sltu |
                    inst_bltz | inst_bltzal| inst_bgezal| inst_lb  | inst_lbu  |
                    inst_lh   | inst_lhu   | inst_lwl   | inst_lwr | inst_sb   |
                    inst_sh   | inst_swl   | inst_swr;
-    //cpu arithmetic
+//cpu arithmetic
 
 assign vid_v1_rt = inst_sll  | inst_srl | inst_sra | inst_sllv | inst_srlv | inst_srav |
                    inst_mtc0;
@@ -587,10 +610,11 @@ assign vid_dest     = vid_dest_r31? 7'h1f:
                       vid_dest_rd ? {2'b00,rd[4:0]}:
                       vid_dest_rt ? {2'b00,rt[4:0]}:
                                     7'b1100000;
-
+assign vid_baddr    = ds_baddr_r;
 assign vid_bd       = bd;
 //issuebus_o
 assign issue_valid = vid_valid     ;
+assign issue_baddr = vid_baddr     ;
 assign issue_bd    = vid_bd        ;
 assign issue_exc   = vid_exc       ;
 assign issue_pc    = vid_pc        ;
@@ -607,7 +631,8 @@ assign issue_v3    = v3            ;
 //control logic
 
 
-assign ds_cango       = !v_hazard || inc;
+// assign ds_cango       = !v_hazard || inc;
+assign ds_cango       = ~v_hazard || (v_hazard && flush_taken) ||inc;
 assign ds_allowin     = !ds_valid_r || ds_cango && es_allowin;
 assign ds_to_es_valid = ds_valid_r && ds_cango;
 
@@ -619,23 +644,37 @@ always @(posedge clock) begin
         else ds_valid_r <= fs_to_ds_valid;
     end
     if(fs_to_ds_valid && ds_allowin) begin
-        {ds_exc_r,ds_pc_r,ds_inst_r} <= {fs_exc,fs_pc,fs_inst};
+        {ds_baddr_r,ds_exc_r,ds_pc_r,ds_inst_r} <= {fs_baddr,fs_exc,fs_pc,fs_inst};
     end
 end
 
 //exception detected
-
+assign inst_cpu   = inst_ae    | inst_logic | inst_br | inst_io | inst_hl |
+                    inst_shift | inst_trap  | inst_pri;
+                  
+assign vid_ex_ri  = ~inst_cpu;
 assign vid_ex_sys = ds_valid_r & inst_syscall;
 assign vid_ex_bp  = ds_valid_r & inst_break  ;
 
-assign vid_exc    = {ds_exc_r[5:3],vid_ex_sys,vid_ex_bp,ds_exc_r[0]};
+assign vid_exc    = {ds_exc_r[5:3],vid_ex_sys,vid_ex_bp,vid_ex_ri};
 
 
 //bd
+// always @(posedge clock) begin
+//   if(reset) begin
+//     bd <= 1'b0;
+//   end else if(inst_br && ~inc && ds_valid_r) begin
+//     bd <= 1'b1;
+//   end else begin
+//     bd <= 1'b0;
+//   end
+// end
 always @(posedge clock) begin
   if(reset) begin
     bd <= 1'b0;
-  end else if(inst_br) begin
+  end else if(flush_taken) begin
+    bd <= 1'b0;
+  end else if(inst_br&& ds_valid_r) begin
     bd <= 1'b1;
   end else begin
     bd <= 1'b0;
@@ -643,7 +682,7 @@ always @(posedge clock) begin
 end
 
 //exc
-assign exc = ds_valid_r & (vid_exc[5] | vid_exc[4] | vid_exc[3] | vid_exc[2] | vid_exc[1] | vid_exc[0] | state_exc);
+assign exc = ds_valid_r & (vid_exc[5] | vid_exc[4] | vid_exc[3] | vid_exc[2] | vid_exc[1] | vid_exc[0] | state_exc | inst_eret);
 
 assign inc = ds_valid_r && exc && (~state_kernel);
 

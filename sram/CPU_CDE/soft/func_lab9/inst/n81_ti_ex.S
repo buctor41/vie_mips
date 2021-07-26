@@ -11,7 +11,7 @@ LEAF(n81_ti_ex_test)
 ##clear cause.TI, status.EXL
     mtc0  zero, c0_compare
     lui   s7,0x0040
-	mtc0  s7, c0_status
+	 mtc0  s7, c0_status
     nop
     lui   s7, 0x0008      #add ex, ref return value.
 ###test inst

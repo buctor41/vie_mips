@@ -1,12 +1,12 @@
 /****** Bus Width *********/
 `define Vbrbus                           33
-`define Vfsbus                           71
+`define Vfsbus                           103
 `define Vfromifcbus                      32
 `define Vtoifcbus                        69
-`define Vissuebus                        154
+`define Vissuebus                        186
 `define Vwsbus                           38
-`define Vrsbus                           98
-`define Vmsbus                           95
+`define Vrsbus                           130
+`define Vmsbus                           127
 `define Vdebugbus                        73
 `define Vrstatus                         42
 `define Vmstatus                         41
@@ -73,9 +73,11 @@
 `define VIE_OP_SWR      8'hbb
 
 //Cp0
+`define CR_BADVADDR     8'h40
 `define CR_COUNT        8'h48
 `define CR_COMPARE      8'h58
 `define CR_STATUS       8'h60
 `define CR_CAUSE        8'h68
 `define CR_EPC          8'h70    
+
 
