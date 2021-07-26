@@ -1,7 +1,0 @@
-0.6
-2019.2
-Nov  6 2019
-21:57:16
-E:/vivado_exe/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd,1573109340,vhdl,,,,vcomponents,,,,,,,,
-E:/vivado_exe/Vivado/2019.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,1573109340,systemVerilog,,E:/vivado_exe/Vivado/2019.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv,,xpm_cdc_array_single;xpm_cdc_async_rst;xpm_cdc_gray;xpm_cdc_handshake;xpm_cdc_low_latency_handshake;xpm_cdc_pulse;xpm_cdc_single;xpm_cdc_sync_rst,,,../../../../../../../../../../67413-CPU设计实战_实验资源/lab/lab3/CPU_CDE/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.ip_user_files/ipstatic;../../../../../../rtl/CPU_gs132,,,,,
-E:/vivado_exe/Vivado/2019.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv,1573109341,systemVerilog,,,,asym_bwe_bb;xpm_memory_base;xpm_memory_dpdistram;xpm_memory_dprom;xpm_memory_sdpram;xpm_memory_spram;xpm_memory_sprom;xpm_memory_tdpram,,,../../../../../../../../../../67413-CPU设计实战_实验资源/lab/lab3/CPU_CDE/cpu132_gettrace/run_vivado/cpu132_gettrace/cpu132_gettrace.ip_user_files/ipstatic;../../../../../../rtl/CPU_gs132,,,,,
