@@ -99,6 +99,7 @@ always @(posedge clock) begin
     end
 end
 
+
 assign exc_adel         = to_fs_valid && fs_allowin && (fs_pc_r[1:0]!=2'b00);
 assign fs_exc           = {exc_adel,5'b00};
 assign fs_baddr         = exc_adel ? fs_pc_r[31:0] : 32'h0;

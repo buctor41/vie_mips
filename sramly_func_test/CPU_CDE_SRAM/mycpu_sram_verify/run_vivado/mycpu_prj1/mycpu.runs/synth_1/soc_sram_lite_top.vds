@@ -1,0 +1,817 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Wed Aug  4 06:59:23 2021
+# Process ID: 12956
+# Current directory: F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1
+# Command line: vivado.exe -log soc_sram_lite_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source soc_sram_lite_top.tcl
+# Log file: F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/soc_sram_lite_top.vds
+# Journal file: F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source soc_sram_lite_top.tcl -notrace
+Command: synth_design -top soc_sram_lite_top -part xc7a200tfbg676-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Device 21-403] Loading part xc7a200tfbg676-2
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 11392 
+WARNING: [Synth 8-6901] identifier 'is_doing' is used before its declaration [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/BRIDGE/bridge_1x2.v:88]
+WARNING: [Synth 8-6901] identifier 'is_doing' is used before its declaration [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/BRIDGE/bridge_1x2.v:89]
+WARNING: [Synth 8-6901] identifier 'addr' is used before its declaration [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:41]
+WARNING: [Synth 8-6901] identifier 'f_state' is used before its declaration [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:109]
+WARNING: [Synth 8-6901] identifier 'ms_data' is used before its declaration [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_mem.v:41]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1035.797 ; gain = 242.367
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'soc_sram_lite_top' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/soc_sram_lite_top.v:65]
+	Parameter SIMULATION bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'clk_pll' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/clk_pll_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'clk_pll' (1#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/clk_pll_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mycpu_top' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/mycpu_top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'vie_if_stage' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:1]
+WARNING: [Synth 8-6014] Unused sequential element fs_pc_r_reg was removed.  [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:119]
+WARNING: [Synth 8-6014] Unused sequential element br_reg was removed.  [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:152]
+INFO: [Synth 8-6155] done synthesizing module 'vie_if_stage' (2#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_if.v:1]
+INFO: [Synth 8-6157] synthesizing module 'vie_id_stage' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_id.v:2]
+INFO: [Synth 8-6157] synthesizing module 'v_decoder_6_64' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vtools.h:62]
+INFO: [Synth 8-6155] done synthesizing module 'v_decoder_6_64' (3#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vtools.h:62]
+INFO: [Synth 8-6157] synthesizing module 'v_decoder_5_32' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vtools.h:1]
+INFO: [Synth 8-6155] done synthesizing module 'v_decoder_5_32' (4#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vtools.h:1]
+INFO: [Synth 8-6157] synthesizing module 'vie_heap_2r1w_32x32' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_id.v:738]
+INFO: [Synth 8-6155] done synthesizing module 'vie_heap_2r1w_32x32' (5#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_id.v:738]
+INFO: [Synth 8-6155] done synthesizing module 'vie_id_stage' (6#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_id.v:2]
+INFO: [Synth 8-6157] synthesizing module 'vie_exe_stage' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_ex.v:2]
+INFO: [Synth 8-6157] synthesizing module 'div_signed' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/div_signed_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'div_signed' (7#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/div_signed_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'div_unsigned' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/div_unsigned_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'div_unsigned' (8#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/div_unsigned_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'vie_exe_stage' (9#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_ex.v:2]
+INFO: [Synth 8-6157] synthesizing module 'vie_mem_stage' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_mem.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'vie_mem_stage' (10#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_mem.v:1]
+INFO: [Synth 8-6157] synthesizing module 'vie_wb_stage' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_wb.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'vie_wb_stage' (11#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_wb.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'mycpu_top' (12#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/mycpu_top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'sram_wrap' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/ram_wrap/sram_wrap.v:36]
+INFO: [Synth 8-6155] done synthesizing module 'sram_wrap' (13#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/ram_wrap/sram_wrap.v:36]
+INFO: [Synth 8-6157] synthesizing module 'inst_ram' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/inst_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'inst_ram' (14#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/inst_ram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'bridge_1x2' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/BRIDGE/bridge_1x2.v:50]
+INFO: [Synth 8-6155] done synthesizing module 'bridge_1x2' (15#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/BRIDGE/bridge_1x2.v:50]
+INFO: [Synth 8-6157] synthesizing module 'data_ram' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/data_ram_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'data_ram' (16#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/.Xil/Vivado-12956-DESKTOP-0A5EB6A/realtime/data_ram_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'confreg' [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/CONFREG/confreg.v:73]
+	Parameter SIMULATION bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'confreg' (17#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/CONFREG/confreg.v:73]
+INFO: [Synth 8-6155] done synthesizing module 'soc_sram_lite_top' (18#1) [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/soc_sram_lite_top.v:65]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_size[1]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_size[0]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_wstrb[3]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_wstrb[2]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_wstrb[1]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_wstrb[0]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[31]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[30]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[29]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[28]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[27]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[26]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[25]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[24]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[23]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[22]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[21]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[20]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[19]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[18]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[17]
+WARNING: [Synth 8-3331] design confreg has unconnected port conf_addr[16]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[31]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[30]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[29]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[28]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[27]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[26]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[25]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[24]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[23]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[22]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[21]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[20]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[19]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[18]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[17]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[16]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[15]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[14]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[13]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[12]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[11]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[10]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[9]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[8]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[7]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[6]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[5]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[4]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[3]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[2]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[1]
+WARNING: [Synth 8-3331] design vie_mem_stage has unconnected port flushbus_i[0]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[31]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[30]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[29]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[28]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[27]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[26]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[25]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[24]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[23]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[22]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[21]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[20]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[19]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[18]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[17]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[16]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[15]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[14]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[13]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[12]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[11]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[10]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[9]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[8]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[7]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[6]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[5]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[4]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[3]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[2]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[1]
+WARNING: [Synth 8-3331] design vie_exe_stage has unconnected port flushbus_i[0]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port rstatus_i[37]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port mstatus_i[37]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[31]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[30]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[29]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[28]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[27]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[26]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[25]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[24]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[23]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[22]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[21]
+WARNING: [Synth 8-3331] design vie_id_stage has unconnected port flushbus_i[20]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1115.238 ; gain = 321.809
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1115.238 ; gain = 321.809
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1115.238 ; gain = 321.809
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.139 . Memory (MB): peak = 1115.238 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/ip/div_unsigned/div_unsigned/div_unsigned_in_context.xdc] for cell 'cpu/u2_ex_stage/u1_div_unsigned'
+Finished Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/ip/div_unsigned/div_unsigned/div_unsigned_in_context.xdc] for cell 'cpu/u2_ex_stage/u1_div_unsigned'
+Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/ip/div_signed/div_signed/div_signed_in_context.xdc] for cell 'cpu/u2_ex_stage/u0_div_signed'
+Finished Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/ip/div_signed/div_signed/div_signed_in_context.xdc] for cell 'cpu/u2_ex_stage/u0_div_signed'
+Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/clk_pll/clk_pll/clk_pll_in_context.xdc] for cell 'pll.clk_pll'
+Finished Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/clk_pll/clk_pll/clk_pll_in_context.xdc] for cell 'pll.clk_pll'
+Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/data_ram/data_ram/data_ram_in_context.xdc] for cell 'data_ram'
+Finished Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/data_ram/data_ram/data_ram_in_context.xdc] for cell 'data_ram'
+Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/inst_ram/inst_ram/inst_ram_in_context.xdc] for cell 'inst_ram'
+Finished Parsing XDC File [f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/inst_ram/inst_ram/inst_ram_in_context.xdc] for cell 'inst_ram'
+Parsing XDC File [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc]
+WARNING: [Constraints 18-619] A clock with name 'clk' already exists, overwriting the previous clock with the same name. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc:5]
+WARNING: [Vivado 12-508] No pins matched 'pll.clk_pll/inst/plle2_adv_inst/CLKOUT1'. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc:91]
+WARNING: [Vivado 12-508] No pins matched 'pll.clk_pll/inst/plle2_adv_inst/CLKOUT0'. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc:92]
+Finished Parsing XDC File [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc]
+WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/soc_sram_lite_top_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/soc_lite.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/soc_sram_lite_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/soc_sram_lite_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1257.406 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1257.406 ; gain = 0.000
+WARNING: [Timing 38-316] Clock period '1000.000' specified during out-of-context synthesis of instance 'cpu/u2_ex_stage/u0_div_signed' at clock pin 'aclk' is different from the actual clock period '20.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '1000.000' specified during out-of-context synthesis of instance 'cpu/u2_ex_stage/u1_div_unsigned' at clock pin 'aclk' is different from the actual clock period '20.000', this can lead to different synthesis results.
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1257.477 ; gain = 464.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a200tfbg676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1257.477 ; gain = 464.047
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for clk. (constraint file  f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/clk_pll/clk_pll/clk_pll_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk. (constraint file  f:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/xilinx_ip/clk_pll/clk_pll/clk_pll_in_context.xdc, line 5).
+Applied set_property DONT_TOUCH = true for cpu/u2_ex_stage/u1_div_unsigned. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for cpu/u2_ex_stage/u0_div_signed. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for \pll.clk_pll . (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for data_ram. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for inst_ram. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1257.477 ; gain = 464.047
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'f_state_reg' in module 'vie_if_stage'
+WARNING: [Synth 8-3936] Found unconnected internal register 'issue_r_reg' and it is trimmed from '186' to '185' bits. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_ex.v:155]
+WARNING: [Synth 8-3936] Found unconnected internal register 'rsbus_r_reg' and it is trimmed from '162' to '161' bits. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_mem.v:107]
+WARNING: [Synth 8-3936] Found unconnected internal register 'msbus_r_reg' and it is trimmed from '127' to '85' bits. [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_wb.v:84]
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'confreg'
+INFO: [Synth 8-5544] ROM "num_csn" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "num_a_g" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE0 |                           100000 |                            00000
+                 iSTATE3 |                           001000 |                            00001
+                  iSTATE |                           010000 |                            00010
+*
+                 iSTATE4 |                           000001 |                            01000
+                 iSTATE1 |                           000010 |                            10000
+                 iSTATE2 |                           000100 |                            00100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'f_state_reg' using encoding 'one-hot' in module 'vie_if_stage'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE4 |                           000001 |                              000
+                  iSTATE |                           100000 |                              001
+                 iSTATE0 |                           010000 |                              010
+                 iSTATE1 |                           001000 |                              011
+                 iSTATE2 |                           000100 |                              100
+                 iSTATE3 |                           000010 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'confreg'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1257.477 ; gain = 464.047
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     33 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 5     
+	   4 Input      4 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 6     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 8     
++---Registers : 
+	              185 Bit    Registers := 1     
+	              161 Bit    Registers := 1     
+	               85 Bit    Registers := 1     
+	               32 Bit    Registers := 64    
+	               23 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                7 Bit    Registers := 1     
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 40    
++---Multipliers : 
+	                32x32  Multipliers := 2     
++---RAMs : 
+	              128 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 5     
+	   2 Input     32 Bit        Muxes := 36    
+	   3 Input     23 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 13    
+	   6 Input     16 Bit        Muxes := 1     
+	  17 Input     16 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   8 Input      8 Bit        Muxes := 1     
+	   2 Input      7 Bit        Muxes := 3     
+	  10 Input      6 Bit        Muxes := 1     
+	   6 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 6     
+	   2 Input      5 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 5     
+	   6 Input      4 Bit        Muxes := 2     
+	   5 Input      4 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 10    
+	   6 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 36    
+	   6 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module soc_sram_lite_top 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module vie_if_stage 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 3     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 9     
+	  10 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
+	   6 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 5     
+Module vie_heap_2r1w_32x32 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 31    
+Module vie_id_stage 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 3     
+	                6 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+	   2 Input      7 Bit        Muxes := 3     
+	   2 Input      5 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 2     
+Module vie_exe_stage 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     33 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
++---Registers : 
+	              185 Bit    Registers := 1     
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
++---Multipliers : 
+	                32x32  Multipliers := 2     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 5     
+	   2 Input     32 Bit        Muxes := 16    
+	   2 Input      4 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 1     
+	   5 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 12    
+Module vie_mem_stage 
+Detailed RTL Component Info : 
++---Registers : 
+	              161 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module vie_wb_stage 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               85 Bit    Registers := 1     
+	               32 Bit    Registers := 5     
+	                8 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   7 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
+Module mycpu_top 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module sram_wrap 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 3     
++---Registers : 
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	              128 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+Module bridge_1x2 
+Detailed RTL Component Info : 
++---Adders : 
+	   4 Input      4 Bit       Adders := 1     
++---Registers : 
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module confreg 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 8     
++---Registers : 
+	               32 Bit    Registers := 20    
+	               23 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 16    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   3 Input     23 Bit        Muxes := 1     
+	   2 Input     23 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 13    
+	   6 Input     16 Bit        Muxes := 1     
+	  17 Input     16 Bit        Muxes := 1     
+	   8 Input      8 Bit        Muxes := 1     
+	   6 Input      6 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 6     
+	   6 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 10    
+	   6 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 740 (col length:100)
+BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_ex.v:380]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/rtl/myCPU/vie_ex.v:381]
+DSP Report: Generating DSP unsigned_prod, operation Mode is: A2*B2.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: Generating DSP unsigned_prod, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: Generating DSP unsigned_prod, operation Mode is: A2*B2.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: Generating DSP unsigned_prod, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: register unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: operator unsigned_prod is absorbed into DSP unsigned_prod.
+DSP Report: Generating DSP signed_prod, operation Mode is: A2*B2.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: Generating DSP signed_prod, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: Generating DSP signed_prod, operation Mode is: A2*B2.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: Generating DSP signed_prod, operation Mode is: (PCIN>>17)+A2*B2.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: register signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+DSP Report: operator signed_prod is absorbed into DSP signed_prod.
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[16]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[8]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[24]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[17]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[1]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[9]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[25]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[18]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[2]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[10]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[26]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[19]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[3]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[11]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[27]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[20]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[4]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[12]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[28]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[21]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[5]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[13]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[29]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[22]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[6]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[14]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[30]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'cpu/u2_ex_stage/issue_r_reg[104]' (FDE) to 'cpu/u2_ex_stage/issue_r_reg[105]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[7]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[31]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[23]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3886] merging instance 'u_confreg/simu_flag_reg[15]' (FDRE) to 'u_confreg/simu_flag_reg[0]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_confreg/simu_flag_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u2_ex_stage/\e_state_reg[3] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (cpu/u4_wb_stage/c0_status_bev_reg)
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u4_wb_stage/\c0_cause_excode_reg[4] )
+INFO: [Synth 8-3886] merging instance 'cpu/u4_wb_stage/c0_cause_ip_reg[2]' (FDR) to 'cpu/u4_wb_stage/c0_cause_ip_reg[6]'
+INFO: [Synth 8-3886] merging instance 'cpu/u4_wb_stage/c0_cause_ip_reg[3]' (FDR) to 'cpu/u4_wb_stage/c0_cause_ip_reg[6]'
+INFO: [Synth 8-3886] merging instance 'cpu/u4_wb_stage/c0_cause_ip_reg[4]' (FDR) to 'cpu/u4_wb_stage/c0_cause_ip_reg[6]'
+INFO: [Synth 8-3886] merging instance 'cpu/u4_wb_stage/c0_cause_ip_reg[5]' (FDR) to 'cpu/u4_wb_stage/c0_cause_ip_reg[6]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u4_wb_stage/\c0_cause_ip_reg[6] )
+INFO: [Synth 8-3886] merging instance 'cpu/u1_id_stage/ds_exc_r_reg[3]' (FDE) to 'cpu/u1_id_stage/ds_exc_r_reg[4]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u1_id_stage/\ds_exc_r_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u2_ex_stage/\issue_r_reg[112] )
+INFO: [Synth 8-3886] merging instance 'cpu/u3_mem_stage/rsbus_r_reg[69]' (FDE) to 'cpu/u3_mem_stage/rsbus_r_reg[70]'
+INFO: [Synth 8-3886] merging instance 'cpu/u2_ex_stage/issue_r_reg[112]' (FDE) to 'cpu/u2_ex_stage/issue_r_reg[150]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u2_ex_stage/\issue_r_reg[150] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (cpu/u3_mem_stage/\rsbus_r_reg[79] )
+INFO: [Synth 8-3886] merging instance 'cpu/u4_wb_stage/msbus_r_reg[69]' (FDE) to 'cpu/u4_wb_stage/msbus_r_reg[70]'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1275.996 ; gain = 482.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping	Report (see note below)
++------------------+--------------------------------+-----------+----------------------+-------------+
+|Module Name       | RTL Object                     | Inference | Size (Depth x Width) | Primitives  | 
++------------------+--------------------------------+-----------+----------------------+-------------+
+|soc_sram_lite_top | u_inst_sram_wrap/buf_rdata_reg | Implied   | 4 x 32               | RAM32M x 6	 | 
+|soc_sram_lite_top | u_data_sram_wrap/buf_rdata_reg | Implied   | 4 x 32               | RAM32M x 6	 | 
++------------------+--------------------------------+-----------+----------------------+-------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping	Report (see note below)
++--------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name   | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|vie_exe_stage | A2*B2            | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | (PCIN>>17)+A2*B2 | 16     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | (PCIN>>17)+A2*B2 | 18     | 16     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | A2*B2            | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | (PCIN>>17)+A2*B2 | 15     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | A2*B2            | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|vie_exe_stage | (PCIN>>17)+A2*B2 | 18     | 15     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
++--------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-565] redefining clock 'clk'
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:35 ; elapsed = 00:01:36 . Memory (MB): peak = 1275.996 ; gain = 482.566
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:43 ; elapsed = 00:01:44 . Memory (MB): peak = 1340.324 ; gain = 546.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping	Report
++------------------+--------------------------------+-----------+----------------------+-------------+
+|Module Name       | RTL Object                     | Inference | Size (Depth x Width) | Primitives  | 
++------------------+--------------------------------+-----------+----------------------+-------------+
+|soc_sram_lite_top | u_inst_sram_wrap/buf_rdata_reg | Implied   | 4 x 32               | RAM32M x 6	 | 
+|soc_sram_lite_top | u_data_sram_wrap/buf_rdata_reg | Implied   | 4 x 32               | RAM32M x 6	 | 
++------------------+--------------------------------+-----------+----------------------+-------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:50 ; elapsed = 00:01:50 . Memory (MB): peak = 1570.637 ; gain = 777.207
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:55 ; elapsed = 00:01:55 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:55 ; elapsed = 00:01:55 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:56 ; elapsed = 00:01:56 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:56 ; elapsed = 00:01:56 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:56 ; elapsed = 00:01:57 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:56 ; elapsed = 00:01:57 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_pll       |         1|
+|2     |inst_ram      |         1|
+|3     |data_ram      |         1|
+|4     |div_signed    |         1|
+|5     |div_unsigned  |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+-------------+------+
+|      |Cell         |Count |
++------+-------------+------+
+|1     |clk_pll      |     1|
+|2     |data_ram     |     1|
+|3     |div_signed   |     1|
+|4     |div_unsigned |     1|
+|5     |inst_ram     |     1|
+|6     |CARRY4       |   115|
+|7     |DSP48E1      |     8|
+|8     |LUT1         |    13|
+|9     |LUT2         |   373|
+|10    |LUT3         |   353|
+|11    |LUT4         |   560|
+|12    |LUT5         |   477|
+|13    |LUT6         |  2670|
+|14    |MUXF7        |     4|
+|15    |RAM32M       |    12|
+|16    |FDRE         |  2617|
+|17    |FDSE         |    54|
+|18    |IBUF         |    15|
+|19    |OBUF         |    39|
++------+-------------+------+
+
+Report Instance Areas: 
++------+-------------------+--------------------+------+
+|      |Instance           |Module              |Cells |
++------+-------------------+--------------------+------+
+|1     |top                |                    |  7510|
+|2     |  bridge_1x2       |bridge_1x2          |    18|
+|3     |  cpu              |mycpu_top           |  6136|
+|4     |    u0_if_stage    |vie_if_stage        |   223|
+|5     |    u1_id_stage    |vie_id_stage        |  3110|
+|6     |      u0_rf_heap   |vie_heap_2r1w_32x32 |  2558|
+|7     |    u2_ex_stage    |vie_exe_stage       |  1878|
+|8     |    u3_mem_stage   |vie_mem_stage       |   414|
+|9     |    u4_wb_stage    |vie_wb_stage        |   510|
+|10    |  u_confreg        |confreg             |  1122|
+|11    |  u_data_sram_wrap |sram_wrap           |    55|
+|12    |  u_inst_sram_wrap |sram_wrap_0         |    57|
++------+-------------------+--------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:56 ; elapsed = 00:01:57 . Memory (MB): peak = 1575.453 ; gain = 782.023
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 100 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:42 ; elapsed = 00:01:52 . Memory (MB): peak = 1575.453 ; gain = 639.785
+Synthesis Optimization Complete : Time (s): cpu = 00:01:56 ; elapsed = 00:01:57 . Memory (MB): peak = 1575.453 ; gain = 782.023
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.126 . Memory (MB): peak = 1575.453 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 139 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1575.453 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 12 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 12 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+106 Infos, 117 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:02:04 ; elapsed = 00:02:06 . Memory (MB): peak = 1575.453 ; gain = 1106.977
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1575.453 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'F:/loogson/vie_mips/sramly_func_test/CPU_CDE_SRAM/mycpu_sram_verify/run_vivado/mycpu_prj1/mycpu.runs/synth_1/soc_sram_lite_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file soc_sram_lite_top_utilization_synth.rpt -pb soc_sram_lite_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Aug  4 07:01:36 2021...
